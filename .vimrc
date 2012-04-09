@@ -9,16 +9,16 @@ set enc=utf-8
 set number
 set shiftwidth=4
 set tabstop=4
-"set smartindent
-"set showmatch
-"set smartcase
-"set expandtab
+set smartindent
+set showmatch
+set smartcase
+set expandtab
 
 " yamktmp
-map <silent> sy :call YanktmpYank()<cr>
-map <silent> sp :call YanktmpPaste_p()<cr>
-map <silent> sP :call YanktmpPaste_P()<cr> 
-let g:yanktmp_file = '/Users/ryo/tmp/yanktmp'
+"map <silent> sy :call YanktmpYank()<cr>
+"map <silent> sp :call YanktmpPaste_p()<cr>
+"map <silent> sP :call YanktmpPaste_P()<cr> 
+"let g:yanktmp_file = '/Users/ryo/tmp/yanktmp'
 
 
 " autocomplpop.vim
@@ -43,12 +43,6 @@ inoremap <tab> <c-r>=InsertTabWrapper()<cr>
 " }}} Autocompletion using the TAB key
 
 
-" yamktmp
-map <silent> sy :call YanktmpYank()<CR> 
-map <silent> sp :call YanktmpPaste_p()<CR> 
-map <silent> sP :call YanktmpPaste_P()<CR> 
-
-
 " vundle
 set nocompatible
 filetype off                   
@@ -69,4 +63,15 @@ Bundle 'git://git.wincent.com/command-t.git'
 filetype plugin indent on     
 
 
-
+" QFixMemo
+set runtimepath+=~/.vim/plugin/qfixapp
+" キーマップリーダー
+let QFixHowm_Key = 'g'
+" デフォルトの保存先
+let qfixmemo_dir = $HOME . '/Dropbox/tmp/QFixMemo'
+" " デフォルトのファイル名命名規則
+let qfixmemo_filename = '%Y/%m/%Y-%m-%d-%H%M%S.txt'
+" " メモのエンコーディング
+let qfixmemo_fileencoding = 'utf-8'
+" " メモの改行コード
+let qfixmemo_fileformat = 'unix'
