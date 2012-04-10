@@ -4,24 +4,40 @@ if [[ -s ~/.rvm/scripts/rvm ]] ; then source ~/.rvm/scripts/rvm ; fi
 # for svn
 export SVN_EDITOR=vim
 
-
 #
 # alias collection
 #
 alias sc='screen'
+alias tm='tmux'
 alias e='exit'
 alias v='vim'
 alias vm='vim'
 alias gr='grep -R -n'
-
+alias l='ls -la'
+alias la="ls -a"
+alias lf="ls -F"
+alias ll="ls -l"
+alias du="du -h"
+alias df="df -h"
 # for typo
 alias ks='ls'
-alias l='ls -la'
-
+alias lks='ls'
 # git alias
 alias gitb='git branch'
-alias gitc='git checkout'
+alias gitch='git checkout'
+alias gitco='git commit'
+alias gitf='git fetch'
+alias gitpl='git pull'
+alias gits='git status'
 
+case "${OSTYPE}" in
+freebsd*|darwin*)
+alias ls="ls -G -w"
+;;
+linux*)
+alias ls="ls --color"
+;;
+esac
 
 export LANG=ja_JP.UTF-8
 HISTFILE=$HOME/.zsh-history
@@ -117,23 +133,6 @@ setopt auto_cd
 
 ## スペルチェックsetopt correct
 
-## エイリアスsetopt complete_aliases
-
-case "${OSTYPE}" in
-freebsd*|darwin*)
-alias ls="ls -G -w"
-;;
-linux*)
-alias ls="ls --color"
-;;
-esac
-alias la="ls -a"
-alias lf="ls -F"
-alias ll="ls -l"
-alias du="du -h"
-alias df="df -h"
-
-alias emacs="open /Applications/Emacs.app"
 
 ## 最後のスラッシュを自動的に削除しない
 setopt noautoremoveslash
