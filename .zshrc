@@ -30,6 +30,9 @@ alias gitf='git fetch'
 alias gitpl='git pull'
 alias gits='git status'
 
+alias allfinder='defaults write com.apple.finder AppleShowAllFiles -boolean true; killall Finder'
+alias protfinder='defaults delete com.apple.finder AppleShowAllFiles; killall Finder'
+
 case "${OSTYPE}" in
 freebsd*|darwin*)
 alias ls="ls -G -w"
@@ -171,3 +174,5 @@ function wikipedia
 	    ${TEXT_BROWSER} http://ja.wikipedia.org/wiki/`_space2p20 $@`
 }
 
+
+PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting
