@@ -50,6 +50,8 @@ NeoBundle 'tpope/vim-fugitive'
 NeoBundle 'rails.vim'
 NeoBundle 'unite.vim'
 NeoBundle 'sudo.vim'
+" vimshell
+NeoBundle 'Shougo/vimshell'
 " quickrun
 NeoBundle 'thinca/vim-quickrun'
 " tcomment
