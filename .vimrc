@@ -1,8 +1,13 @@
 "
 " 各種パラメータ
 "
+
+" シンタックスハイライト
 syntax on
 highlight LineNr ctermfg=darkyellow 
+"ウィンドウタイトルにファイル名表示
+set title
+" 行番号を表示
 set number
 set showmatch
 set smartcase
@@ -45,16 +50,35 @@ NeoBundleFetch 'Shougo/neobundle.vim'
 
 " webapi-vim
 NeoBundle 'mattn/webapi-vim'
+" buftabs
+NeoBundle 'vim-scripts/buftabs'
+let g:buftabs_only_basename = 1
+let g:buftabs_in_statusline = 1
+let g:buftabs_active_highlight_group = "Visual"
+set statusline=%=\ [%{(&fenc!=''?&fenc:&enc)}/%{&ff}]\[%Y]\[%04l,%04v][%p%%]
+set laststatus=2
+nmap <c-n> :bn<CR>
+nmap <c-n> :bp<CR>
 " original repos on github
 NeoBundle 'tpope/vim-fugitive'
 NeoBundle 'rails.vim'
 NeoBundle 'unite.vim'
+" sudo
 NeoBundle 'sudo.vim'
+NeoBundle 'git://github.com/fuenor/im_control.vim.git'
+" TODO: IMごとの設定を書く
 " vimshell
 NeoBundle 'Shougo/vimshell'
+" vimfiler
+NeoBundle 'Shougo/vimfiler'
+" EasyMotion
+" カーソル移動補助
+NeoBundle 'Lokaltog/vim-easymotion'
+let g:EasyMotion_leader_key = "'"
 " quickrun
 NeoBundle 'thinca/vim-quickrun'
 " tcomment
+" <c-_><c-_> でコメントトグル
 NeoBundle 'tomtom/tcomment_vim'
 " Qiita
 " NeoBundle 'mattn/qiita-vim'
@@ -63,8 +87,9 @@ NeoBundle 'tomtom/tcomment_vim'
 NeoBundle 'Shougo/neocomplcache'
 let g:acp_enableAtStartup = 0
 let g:neocomplcache_enable_at_startup = 1
-" non github repos
+" command-t
 NeoBundle 'git://git.wincent.com/command-t.git'
+" accelerated-smooth-scroll
 " 滑らかな加速スクロールを行うプラグイン
 NeoBundle 'yonchu/accelerated-smooth-scroll'
 let g:ac_smooth_scroll_du_sleep_time_msec = 5
@@ -111,3 +136,10 @@ let qfixmemo_filename = '%Y/%m/%Y-%m-%d-%H%M%S.'.suffix
 "
 " qiita-vim 
 set runtimepath+=~/.vim/my_extention/qiita-vim/
+
+
+"
+" 自作関数
+"
+
+
