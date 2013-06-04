@@ -5,30 +5,33 @@ if [[ -s ~/.rvm/scripts/rvm ]] ; then source ~/.rvm/scripts/rvm ; fi
 export SVN_EDITOR=vim
 
 #
-# alias collection
+# alias 
 #
 alias sc='screen'
 alias tm='tmux'
 alias e='exit'
 alias v='vim'
-alias vm='vim'
 alias gr='grep -R -n'
+alias wl='wc -l'
 alias l='ls -la'
+alias ll='ls -l'
 alias la="ls -a"
 alias lf="ls -F"
-alias ll="ls -l"
 alias du="du -h"
 alias df="df -h"
 # for typo
 alias ks='ls'
 alias lks='ls'
-# git alias
+alias vm='vim'
+# for git
 alias gitb='git branch'
 alias gitch='git checkout'
 alias gitco='git commit'
 alias gitf='git fetch'
 alias gitpl='git pull'
+alias gitps='git push'
 alias gits='git status'
+alias gitdf='git diff'
 # for mac
 alias allfinder='defaults write com.apple.finder AppleShowAllFiles -boolean true; killall Finder'
 alias protfinder='defaults delete com.apple.finder AppleShowAllFiles; killall Finder'
@@ -156,37 +159,31 @@ setopt noautoremoveslash
 
 ## 検索
 export TEXT_BROWSER=w3m
-
 function _space2p20
 {
 	    echo $@ |sed -e "s/ /%20/g"
 }
-
 function _space2plus
 {
 	    echo $@ | sed -e "s/ /+/g"
 }
-
 function google
 {
 	    ${TEXT_BROWSER} "http://www.google.co.jp/search?q="`_space2plus $@`"&hl=ja"
 }
-
 function ydic
 {
 	    ${TEXT_BROWSER} "http://dic.yahoo.co.jp/dsearch?enc=UTF-8&p="`_space2plus $@`"&stype=0&dtyp
 		e=2"
 }
-
 function technorati
 {
 	    ${TEXT_BROWSER} http://www.technorati.com/search/`_space2p20 $@`"?language=ja"
 }
-
 function wikipedia
 {
 	    ${TEXT_BROWSER} http://ja.wikipedia.org/wiki/`_space2p20 $@`
 }
 
-
 PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting
+
