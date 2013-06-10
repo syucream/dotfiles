@@ -73,25 +73,35 @@ NeoBundle 'rails.vim'
 
 "" unite.vim {{{
 NeoBundle 'unite.vim'
-" The prefix key.
-nnoremap    [unite]   <Nop>
-nmap    <Leader>f [unite]
-" unite.vim keymap
-nnoremap [unite]u  :<C-u>Unite -no-split<Space>
-nnoremap <silent> [unite]f :<C-u>Unite<Space>buffer<CR>
-nnoremap <silent> [unite]b :<C-u>Unite<Space>bookmark<CR>
-nnoremap <silent> [unite]m :<C-u>Unite<Space>file_mru<CR>
-nnoremap <silent> [unite]r :<C-u>UniteWithBufferDir file<CR>
-nnoremap <silent> ,vr :UniteResume<CR>
-" vinarise
-let g:vinarise_enable_auto_detect = 1
-" unite-build map
-nnoremap <silent> ,vb :Unite build<CR>
-nnoremap <silent> ,vcb :Unite build:!<CR>
-nnoremap <silent> ,vch :UniteBuildClearHighlight<CR>
+""unite.vim の各種設定
+nnoremap <silent> ,ub :<C-u>Unite buffer<CR> 
+nnoremap <silent> ,uf :<C-u>UniteWithBufferDir -buffer-name=files file<CR> 
+nnoremap <silent> ,ur :<C-u>Unite -buffer-name=register register<CR> 
+nnoremap <silent> ,um :<C-u>Unite file_mru<CR> 
+nnoremap <silent> ,uu :<C-u>Unite buffer file_mru<CR> 
+nnoremap <silent> ,uh :<C-u>Unite help<CR> 
+nnoremap <silent> ,ua :<C-u>UniteWithBufferDir -buffer-name=files buffer file_mru bookmark file<CR>
+"ウィンドウを分割して開く
+au FileType unite nnoremap <silent> <buffer> <expr> <C-j> unite#do_action('split')
+au FileType unite inoremap <silent> <buffer> <expr> <C-j> unite#do_action('split')
+"ウィンドウを縦に分割して開く
+au FileType unite nnoremap <silent> <buffer> <expr> <C-l> unite#do_action('vsplit')
+au FileType unite inoremap <silent> <buffer> <expr> <C-l> unite#do_action('vsplit')
+"ESCキーを2回押すと終了する
+au FileType unite nnoremap <silent> <buffer> <ESC><ESC> q
+au FileType unite inoremap <silent> <buffer> <ESC><ESC> <ESC>q
 
 " unite-help.vim
 NeoBundle 'tsukkee/unite-help'
+
+" unite-outline
+NeoBundle 'h1mesuke/unite-outline'
+
+" unite-gtags
+NeoBundle 'hewes/unite-gtags'
+
+" unite-quickfix
+NeoBundle 'osyo-manga/unite-quickfix'
 
 "" }}}
 
@@ -144,8 +154,14 @@ NeoBundle 'nathanaelkane/vim-indent-guides'
 "let g:indent_guides_color_change_parcent = 30
 "let g:indent_guides_guide_size = 1
 
+" Markdownプレビュー
+NeoBundle 'mattn/mkdpreview-vim'
+
 " vim-pandoc
 " NeoBundle 'vim-pandoc/vim-pandoc'
+
+" gtags.vim
+NeoBundle 'vim-scripts/gtags.vim'
 
 filetype plugin indent on     
 
