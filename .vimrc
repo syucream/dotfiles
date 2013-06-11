@@ -71,7 +71,9 @@ nmap <c-n> :bp<CR>
 NeoBundle 'tpope/vim-fugitive'
 NeoBundle 'rails.vim'
 
+
 "" unite.vim {{{
+
 NeoBundle 'unite.vim'
 ""unite.vim の各種設定
 nnoremap <silent> ,ub :<C-u>Unite buffer<CR> 
@@ -80,6 +82,8 @@ nnoremap <silent> ,ur :<C-u>Unite -buffer-name=register register<CR>
 nnoremap <silent> ,um :<C-u>Unite file_mru<CR> 
 nnoremap <silent> ,uu :<C-u>Unite buffer file_mru<CR> 
 nnoremap <silent> ,uh :<C-u>Unite help<CR> 
+nnoremap <silent> ,ul :<C-u>Unite history/command history/search<CR>
+nnoremap <silent> ,uy :<C-u>Unite history/yank<CR>
 nnoremap <silent> ,ua :<C-u>UniteWithBufferDir -buffer-name=files buffer file_mru bookmark file<CR>
 "ウィンドウを分割して開く
 au FileType unite nnoremap <silent> <buffer> <expr> <C-j> unite#do_action('split')
@@ -94,6 +98,12 @@ au FileType unite inoremap <silent> <buffer> <ESC><ESC> <ESC>q
 " unite-help.vim
 NeoBundle 'tsukkee/unite-help'
 
+" unite-history
+" コマンド、検索処理の履歴を表示
+NeoBundle 'thinca/vim-unite-history'
+" パラメータ
+let g:unite_source_history_yank_enable =1
+
 " unite-outline
 NeoBundle 'h1mesuke/unite-outline'
 
@@ -102,6 +112,9 @@ NeoBundle 'hewes/unite-gtags'
 
 " unite-quickfix
 NeoBundle 'osyo-manga/unite-quickfix'
+
+" unite-qfixhowm
+NeoBundle 'osyo-manga/unite-qfixhowm'
 
 "" }}}
 
@@ -129,10 +142,11 @@ NeoBundle 'thinca/vim-quickrun'
 NeoBundle 'tomtom/tcomment_vim'
 
 " neocomplcache
-" autocomplpop と競合するのでそちらは無効にする
 NeoBundle 'Shougo/neocomplcache'
+" autocomplpop と競合するのでそちらは無効にする
 let g:acp_enableAtStartup = 0
 let g:neocomplcache_enable_at_startup = 1
+" Necoコマンドは無効化
 noremap Neco <Nop>
 
 " command-t
@@ -141,8 +155,8 @@ NeoBundle 'git://git.wincent.com/command-t.git'
 " accelerated-smooth-scroll
 " 滑らかな加速スクロールを行うプラグイン
 NeoBundle 'yonchu/accelerated-smooth-scroll'
-let g:ac_smooth_scroll_du_sleep_time_msec = 5
-let g:ac_smooth_scroll_fb_sleep_time_msec = 5
+let g:ac_smooth_scroll_du_sleep_time_msec = 2
+let g:ac_smooth_scroll_fb_sleep_time_msec = 2
 
 " evervim
 " TODO: アカウント設定
@@ -154,28 +168,36 @@ NeoBundle 'nathanaelkane/vim-indent-guides'
 "let g:indent_guides_color_change_parcent = 30
 "let g:indent_guides_guide_size = 1
 
-" Markdownプレビュー
-NeoBundle 'mattn/mkdpreview-vim'
-
 " vim-pandoc
 " NeoBundle 'vim-pandoc/vim-pandoc'
 
 " gtags.vim
 NeoBundle 'vim-scripts/gtags.vim'
 
-filetype plugin indent on     
+" gist-vim
+NeoBundle 'mattn/gist-vim'
+"" TODO: ローカル設定を入れる
 
+" manpageview
+NeoBundle 'git://github.com/emezeske/manpageview.git'
 
-" ------------------------------------------------------------------------------------------------------------------------
+" previm
+" pure vim なmarkdownプレビューア？
+NeoBundle 'kannokanno/previm'
 
 "
-" QFixMemo
+"" ---------------------------------------------------------------------------------------------------------- 
+"" ref.vim {{{
 "
-" vundle でインストールできない。Google Site からダウンロードすること
-" https://sites.google.com/site/fudist/files/qfixhowm.zip?attredirects=0
+NeoBundle 'thinca/vim-ref'
+
+"" }}}
+
+"" ---------------------------------------------------------------------------------------------------------- 
+"" QFixHowm {{{
 "
-" qfixapp ディレクトリにパスを通す
-set runtimepath+=~/.vim/additional/qfixapp/
+NeoBundle 'fuenor/qfixhowm'
+
 " キーマップリーダー
 let QFixHowm_Key = 'g'
 " デフォルトの保存先
@@ -196,6 +218,10 @@ let suffix = 'mkd'
 let QFixHown_UserFileType = 'markdown'
 let QFixHown_UserFileExt = suffix
 let qfixmemo_filename = '%Y/%m/%Y-%m-%d-%H%M%S.'.suffix
+
+"" }}}
+
+filetype plugin indent on     
 
 
 " 
