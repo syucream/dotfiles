@@ -82,7 +82,8 @@ nnoremap <silent> ,ur :<C-u>Unite -buffer-name=register register<CR>
 nnoremap <silent> ,um :<C-u>Unite file_mru<CR> 
 nnoremap <silent> ,uu :<C-u>Unite buffer file_mru<CR> 
 nnoremap <silent> ,uh :<C-u>Unite help<CR> 
-nnoremap <silent> ,ul :<C-u>Unite history/command history/search<CR>
+nnoremap <silent> ,uo :<C-u>Unite outline<CR> 
+nnoremap <silent> ,uH :<C-u>Unite history/command history/search<CR>
 nnoremap <silent> ,uy :<C-u>Unite history/yank<CR>
 nnoremap <silent> ,ua :<C-u>UniteWithBufferDir -buffer-name=files buffer file_mru bookmark file<CR>
 "ウィンドウを分割して開く
@@ -105,7 +106,8 @@ NeoBundle 'thinca/vim-unite-history'
 let g:unite_source_history_yank_enable =1
 
 " unite-outline
-NeoBundle 'h1mesuke/unite-outline'
+" Shougo さんのforkした方が最新リポジトリなので注意
+NeoBundle 'Shougo/unite-outline'
 
 " unite-gtags
 NeoBundle 'hewes/unite-gtags'
@@ -154,9 +156,9 @@ NeoBundle 'git://git.wincent.com/command-t.git'
 
 " accelerated-smooth-scroll
 " 滑らかな加速スクロールを行うプラグイン
-NeoBundle 'yonchu/accelerated-smooth-scroll'
-let g:ac_smooth_scroll_du_sleep_time_msec = 2
-let g:ac_smooth_scroll_fb_sleep_time_msec = 2
+"NeoBundle 'yonchu/accelerated-smooth-scroll'
+"let g:ac_smooth_scroll_du_sleep_time_msec = 2
+"let g:ac_smooth_scroll_fb_sleep_time_msec = 2
 
 " evervim
 " TODO: アカウント設定
