@@ -77,6 +77,7 @@ NeoBundle 'rails.vim'
 NeoBundle 'unite.vim'
 ""unite.vim の各種設定
 nnoremap <silent> ,ub :<C-u>Unite buffer<CR> 
+nnoremap <silent> ,ud :<C-u>UniteWithBufferDir directory<CR> 
 nnoremap <silent> ,uf :<C-u>UniteWithBufferDir -buffer-name=files file<CR> 
 nnoremap <silent> ,ur :<C-u>Unite -buffer-name=register register<CR> 
 nnoremap <silent> ,um :<C-u>Unite file_mru<CR> 
@@ -85,7 +86,7 @@ nnoremap <silent> ,uh :<C-u>Unite help<CR>
 nnoremap <silent> ,uo :<C-u>Unite outline<CR> 
 nnoremap <silent> ,uH :<C-u>Unite history/command history/search<CR>
 nnoremap <silent> ,uy :<C-u>Unite history/yank<CR>
-nnoremap <silent> ,ua :<C-u>UniteWithBufferDir -buffer-name=files buffer file_mru bookmark file<CR>
+nnoremap <silent> ,ua :<C-u>UniteWithBufferDir -buffer-name=files buffer file_mru bookmark file directory<CR>
 "ウィンドウを分割して開く
 au FileType unite nnoremap <silent> <buffer> <expr> <C-j> unite#do_action('split')
 au FileType unite inoremap <silent> <buffer> <expr> <C-j> unite#do_action('split')
@@ -186,6 +187,12 @@ NeoBundle 'git://github.com/emezeske/manpageview.git'
 " previm
 " pure vim なmarkdownプレビューア？
 NeoBundle 'kannokanno/previm'
+
+" open-browser
+NeoBundle 'tyru/open-browser.vim'
+
+" shadowmarks
+NeoBundle 'vim-scripts/ShowMarks'
 
 "
 "" ---------------------------------------------------------------------------------------------------------- 
