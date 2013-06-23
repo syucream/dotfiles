@@ -129,7 +129,7 @@ NeoBundle 'kannokanno/previm'
 NeoBundle 'tyru/open-browser.vim'
 
 " shadowmarks
-NeoBundle 'vim-scripts/ShowMarks'
+" NeoBundle 'vim-scripts/ShowMarks'
 
 " restart.vim
 " gVimじゃないと使えない？
@@ -162,6 +162,15 @@ let g:yanktmp_file = '~/.vim/yanktmp'
 
 " surround.vim
 NeoBundle 'tpope/vim-surround'
+
+" zen-coding
+NeoBundle 'mattn/zencoding-vim'
+
+" switch.vim
+NeoBundle 'AndrewRadev/switch.vim'
+
+" markdown
+NeoBundle 'tpope/vim-markdown'
 
 " ------------------------------------------------------------------------------------------------------------------------
 " unite.vim {{{
@@ -235,16 +244,6 @@ NeoBundle 'thinca/vim-ref'
 "
 " ---------------------------------------------------------------------------------------------------------- 
 "" 使ってないプラグイン {{{
-"
-" vim-pandoc
-" NeoBundle 'vim-pandoc/vim-pandoc'
-"
-" manpageview
-" NeoBundle 'git://github.com/emezeske/manpageview.git'
-"
-" evervim
-" TODO: アカウント設定
-" NeoBundle 'kakkyz81/evervim'
 "
 " "accelerated-smooth-scroll
 " "滑らかな加速スクロールを行うプラグイン

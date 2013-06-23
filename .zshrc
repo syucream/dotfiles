@@ -22,11 +22,11 @@ alias df="df -h"
 # for typo
 alias ks='ls'
 alias lks='ls'
-alias vm='vim'
 # for git
+alias gitaa='git add .'
 alias gitb='git branch'
-alias gitch='git checkout'
-alias gitco='git commit'
+alias gitco='git checkout'
+alias gitcm='git commit'
 alias gitf='git fetch'
 alias gitpl='git pull'
 alias gitps='git push'
