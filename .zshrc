@@ -4,6 +4,9 @@ if [[ -s ~/.rvm/scripts/rvm ]] ; then source ~/.rvm/scripts/rvm ; fi
 # for svn
 export SVN_EDITOR=vim
 
+PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting
+source "$HOME/.rvm/scripts/rvm"
+
 #
 # alias 
 #
@@ -185,5 +188,4 @@ function wikipedia
 	    ${TEXT_BROWSER} http://ja.wikipedia.org/wiki/`_space2p20 $@`
 }
 
-PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting
 
