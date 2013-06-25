@@ -4,8 +4,17 @@ if [[ -s ~/.rvm/scripts/rvm ]] ; then source ~/.rvm/scripts/rvm ; fi
 # for svn
 export SVN_EDITOR=vim
 
-PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting
 source "$HOME/.rvm/scripts/rvm"
+
+#
+# PATH
+#
+
+# Add RVM to PATH for scripting
+PATH=$PATH:$HOME/.rvm/bin 
+
+# for cabal
+PATH=$PATH:$HOME/.cabal/bin 
 
 #
 # alias 

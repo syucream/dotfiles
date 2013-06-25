@@ -172,7 +172,28 @@ NeoBundle 'AndrewRadev/switch.vim'
 " markdown
 NeoBundle 'tpope/vim-markdown'
 
+
+" for Haskell {{{
 " ------------------------------------------------------------------------------------------------------------------------
+"
+" ハイライト強化
+NeoBundle 'dag/vim2hs'
+
+" ghcmod 連携
+NeoBundle 'eagletmt/ghcmod-vim'
+
+" yesod のhtmlテンプレートのハイライト強化
+NeoBundle 'pbrisbin/html-template-syntax'
+
+" Haskell 向けneocomplcache 強化
+NeoBundle 'ujihisa/neco-ghc'
+
+" unite のhaddockソース
+NeoBundle 'eagletmt/unite-haddock'
+
+" }}}
+
+
 " unite.vim {{{
 " ------------------------------------------------------------------------------------------------------------------------
 
@@ -232,7 +253,6 @@ NeoBundle 'ujihisa/unite-colorscheme'
 "" }}}
 
 
-"
 "" ---------------------------------------------------------------------------------------------------------- 
 "" ref.vim {{{
 "
@@ -241,7 +261,6 @@ NeoBundle 'thinca/vim-ref'
 " }}}
 "
 
-"
 " ---------------------------------------------------------------------------------------------------------- 
 "" 使ってないプラグイン {{{
 "
@@ -252,7 +271,7 @@ NeoBundle 'thinca/vim-ref'
 " let g:ac_smooth_scroll_fb_sleep_time_msec = 2
 "
 " }}}
-"
+
 "" ---------------------------------------------------------------------------------------------------------- 
 "" QFixHowm {{{
 "
