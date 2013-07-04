@@ -45,7 +45,6 @@ set foldlevel=0
 " neobundle.vim
 "
 
-filetype off                   
 
 if has('vim_starting')
   set rtp+=~/.vim/bundle/neobundle.vim
@@ -55,8 +54,16 @@ NeoBundleFetch 'Shougo/neobundle.vim'
 
 " webapi-vim
 NeoBundle 'mattn/webapi-vim'
+
 " vimproc
-NeoBundle 'Shougo/vimproc'
+NeoBundle 'Shougo/vimproc', {
+\ 'build' : {
+\     'windows' : 'make -f make_mingw32.mak',
+\     'cygwin' : 'make -f make_cygwin.mak',
+\     'mac' : 'make -f make_mac.mak',
+\     'unix' : 'make -f make_unix.mak',
+\    },
+\ }
 
 " buftabs
 NeoBundle 'vim-scripts/buftabs'
@@ -76,7 +83,8 @@ NeoBundle 'rails.vim'
 
 " sudo
 NeoBundle 'sudo.vim'
-NeoBundle 'git://github.com/fuenor/im_control.vim.git'
+
+"NeoBundle 'git://github.com/fuenor/im_control.vim.git'
 " TODO: IMごとの設定を書く
 
 " vimshell
@@ -300,8 +308,8 @@ let qfixmemo_filename = '%Y/%m/%Y-%m-%d-%H%M%S.'.suffix
 
 "" }}}
 
-filetype plugin indent on     
 
+filetype plugin indent on     
 
 " 
 " 自作プラグインのロード 
