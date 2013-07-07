@@ -20,6 +20,7 @@ PATH=$PATH:$HOME/.cabal/bin
 # alias 
 #
 alias sc='screen'
+alias tmux='tmux -2'
 alias tm='tmux'
 alias e='exit'
 alias v='vim'
