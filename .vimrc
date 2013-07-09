@@ -92,6 +92,7 @@ NeoBundle 'Shougo/vimshell'
 
 " vimfiler
 NeoBundle 'Shougo/vimfiler'
+"let g:vimfiler_as_default_explorer = 1
 
 " EasyMotion
 " カーソル移動補助
@@ -179,6 +180,10 @@ NeoBundle 'AndrewRadev/switch.vim'
 
 " markdown
 NeoBundle 'tpope/vim-markdown'
+
+" powerline
+NeoBundleFetch 'Lokaltog/powerline'
+set rtp+=~/.vim/bundle/powerline/powerline/bindings/vim/plugin
 
 
 " for Haskell {{{
@@ -319,4 +324,13 @@ filetype plugin indent on
 set runtimepath+=~/.vim/my_extention/qiita-vim/
 
 
+"
+" ユーザ定義関数
+"
+
+" カレントバッファのファイルのフルパスを表示する
+function! Fullpath()
+  echo expand("%:p")
+endfunction
+:command! Fullpath :call Fullpath()
 
