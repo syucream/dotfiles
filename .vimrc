@@ -4,6 +4,7 @@
 
 " シンタックスハイライト
 syntax on
+set t_Co=256
 highlight LineNr ctermfg=darkyellow 
 set cursorline
 " 行番号を表示
@@ -182,9 +183,9 @@ NeoBundle 'AndrewRadev/switch.vim'
 NeoBundle 'tpope/vim-markdown'
 
 " powerline
-NeoBundleFetch 'Lokaltog/powerline'
-set rtp+=~/.vim/bundle/powerline/powerline/bindings/vim/plugin
-
+" ノーマルモードに戻るタイミングなどで表示がおかしくなる。なぜかコマンド履歴とか見ると元に戻る
+NeoBundle 'Lokaltog/powerline', { 'rtp' : 'powerline/bindings/vim' }
+let g:Powerline_symbols = "compatible"
 
 " for Haskell {{{
 " ------------------------------------------------------------------------------------------------------------------------
