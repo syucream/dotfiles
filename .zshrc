@@ -198,4 +198,25 @@ function wikipedia
 	    ${TEXT_BROWSER} http://ja.wikipedia.org/wiki/`_space2p20 $@`
 }
 
+## preexec コマンド実行前に呼ばれる
+preexec()
+{
+  echo "$1" | grep "ssh"
+  if [ "$?" -eq 0 ]
+  then
+    tmux set-window-option -a window-status-format "#[fg=yellow](!!Prod!!)" > /dev/null
+    tmux set-window-option -a window-status-current-format "#[fg=yellow](!!Prod!!)" > /dev/null
+  fi
+}
+
+## precmd コマンド実行後、プロンプト表示直前に呼ばれる
+precmd()
+{
+  history -1 | sed "s/^\s[0-9]*\s*//" | grep "ssh"
+  if [ "$?" -eq 0 ]
+  then
+    tmux set-window-option -u window-status-format > /dev/null
+    tmux set-window-option -u window-status-current-format > /dev/null
+  fi
+}
 
