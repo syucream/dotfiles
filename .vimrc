@@ -67,14 +67,14 @@ NeoBundle 'Shougo/vimproc', {
 \ }
 
 " buftabs
-NeoBundle 'vim-scripts/buftabs'
-let g:buftabs_only_basename = 1
-let g:buftabs_in_statusline = 1
-let g:buftabs_active_highlight_group = "Visual"
-set statusline=%=\ [%{(&fenc!=''?&fenc:&enc)}/%{&ff}]\[%Y]\[%04l,%04v][%p%%]
-set laststatus=2
-nmap <c-n> :bn<CR>
-nmap <c-n> :bp<CR>
+"NeoBundle 'vim-scripts/buftabs'
+"let g:buftabs_only_basename = 1
+"let g:buftabs_in_statusline = 1
+"let g:buftabs_active_highlight_group = "Visual"
+"set statusline=%=\ [%{(&fenc!=''?&fenc:&enc)}/%{&ff}]\[%Y]\[%04l,%04v][%p%%]
+"set laststatus=2
+"nmap <c-n> :bn<CR>
+"nmap <c-n> :bp<CR>
 
 " vim-fugitive
 NeoBundle 'tpope/vim-fugitive'
@@ -182,10 +182,27 @@ NeoBundle 'AndrewRadev/switch.vim'
 " markdown
 NeoBundle 'tpope/vim-markdown'
 
+" ステータスライン設定 {{{
+" ------------------------------------------------------------------------------------------------------------------------
+"
+set laststatus=2
+
 " powerline
-" ノーマルモードに戻るタイミングなどで表示がおかしくなる。なぜかコマンド履歴とか見ると元に戻る
-NeoBundle 'Lokaltog/powerline', { 'rtp' : 'powerline/bindings/vim' }
-let g:Powerline_symbols = "compatible"
+" スペックによってはロードに時間がかかるかも
+"NeoBundle 'Lokaltog/powerline', { 'rtp' : 'powerline/bindings/vim' }
+
+" vim-airline
+NeoBundle 'bling/vim-airline'
+" powerline symbols
+let g:airline_left_sep = ''
+let g:airline_left_alt_sep = ''
+let g:airline_right_sep = ''
+let g:airline_right_alt_sep = ''
+let g:airline_fugitive_prefix = ' '
+let g:airline_readonly_symbol = ''
+let g:airline_linecolumn_prefix = ' '
+
+" }}}
 
 " for Haskell {{{
 " ------------------------------------------------------------------------------------------------------------------------
