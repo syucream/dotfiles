@@ -1,20 +1,20 @@
-# for Android develop
-PATH=$PATH:$HOME/android-sdk-mac_86/platform-tools/
-if [[ -s ~/.rvm/scripts/rvm ]] ; then source ~/.rvm/scripts/rvm ; fi
-# for svn
-export SVN_EDITOR=vim
-
-source "$HOME/.rvm/scripts/rvm"
-
 #
 # PATH
 #
 
+# for Android develop
+PATH=$PATH:$HOME/android-sdk-mac_86/platform-tools/
+# for gls on MacOS
+PATH=$PATH:/usr/local/opt/coreutils/libexec/gnubin
 # Add RVM to PATH for scripting
 PATH=$PATH:$HOME/.rvm/bin 
-
 # for cabal
 PATH=$PATH:$HOME/.cabal/bin 
+
+# for rvm
+if [[ -s ~/.rvm/scripts/rvm ]] ; then source ~/.rvm/scripts/rvm ; fi
+source "$HOME/.rvm/scripts/rvm"
+
 
 #
 # alias 
@@ -43,42 +43,54 @@ alias gitcm='git commit'
 alias gitf='git fetch'
 alias gitpl='git pull'
 alias gitps='git push'
-alias gits='git status'
-alias gitdf='git diff'
+alias gits='git status -sb'
+alias gitdf='git diff --color'
 # for mac
 alias allfinder='defaults write com.apple.finder AppleShowAllFiles -boolean true; killall Finder'
 alias protfinder='defaults delete com.apple.finder AppleShowAllFiles; killall Finder'
-
-case "${OSTYPE}" in
-freebsd*|darwin*)
-alias ls="ls -G -w"
-;;
-linux*)
-alias ls="ls --color"
-;;
-esac
 
 export LANG=ja_JP.UTF-8
 HISTFILE=$HOME/.zsh-history
 HISTSIZE=100000
 SAVEHIST=100000
 
-## プロンプトの設定
+
+# ls に色を付ける
+case "${OSTYPE}" in
+freebsd*|darwin*)
+# alias ls="ls -G -w"
+alias ls="gls --color"
+;;
+linux*)
+alias ls="ls --color"
+;;
+esac
+# LSCOLORS
+export LSCOLORS=ExFxCxdxBxegedabagacad
+export LS_COLORS='di=01;34:ln=01;35:so=01;32:ex=01;31:bd=46;34:cd=43;34:su=41;30:sg=46;30:tw=42;30:ow=43;30'
+if [ -f ~/.dircolors ]; then
+    if type dircolors > /dev/null 2>&1; then
+        eval $(dircolors ~/.dircolors)
+    elif type gdircolors > /dev/null 2>&1; then
+        eval $(gdircolors ~/.dircolors)
+    fi
+fi
+
+## プロンプト色設定
 autoload colors
 colors
-
 case ${UID} in
 0)
-  PROMPT="[%{${fg[blue]}%}%n@%m%{${reset_color}%}] %{${fg[blue]}%}#%{${reset_color}%} "
-  PROMPT2="%B%{${fg[blue]}%}%_#%{${reset_color}%}%b "
-  SPROMPT="%B%{${fg[blue]}%}%r is correct? [n,y,a,e]:%{${reset_color}%}%b "
-  RPROMPT="%{${fg[blue]}%}[%/]%{${reset_color}%}"
+  PROMPT="[%{${fg[cyan]}%}%n@%m%{${reset_color}%}] %{${fg[cyan]}%}#%{${reset_color}%} "
+  PROMPT2="%B%{${fg[cyan]}%}%_#%{${reset_color}%}%b "
+  SPROMPT="%B%{${fg[cyan]}%}%r is correct? [n,y,a,e]:%{${reset_color}%}%b "
+  RPROMPT="%{${fg[cyan]}%}[%/]%{${reset_color}%}"
   ;;
   *)
-  PROMPT="[%n@%m] %{${fg[blue]}%}#%{${reset_color}%} "
-  PROMPT2="%B%{${fg[blue]}%}%_#%{${reset_color}%}%b "
-  SPROMPT="%B%{${fg[blue]}%}%r is correct? [n,y,a,e]:%{${reset_color}%}%b "
-  RPROMPT="%{${fg[blue]}%}[%/]%{${reset_color}%}"
+  PROMPT="[%n@%m] %{${fg[cyan]}%}#%{${reset_color}%} "
+  PROMPT2="%B%{${fg[cyan]}%}%_#%{${reset_color}%}%b "
+  SPROMPT="%B%{${fg[cyan]}%}%r is correct? [n,y,a,e]:%{${reset_color}%}%b "
+  RPROMPT="%{${fg[cyan]}%}[%/]%{${reset_color}%}"
   ;;
 esac
 
@@ -145,13 +157,14 @@ setopt print_eight_bit
 ## ヒストリを共有
 setopt share_history
 
+
+#
+## 補完関連
+#
+
 ## 補完候補のカーソル選択を有効に
 zstyle ':completion:*:default' menu select=1
-
 ## 補完候補の色づけ
-#eval `dircolors`
-export LSCOLORS=ExFxCxdxBxegedabagacad
-export LS_COLORS='di=01;34:ln=01;35:so=01;32:ex=01;31:bd=46;34:cd=43;34:su=41;30:sg=46;30:tw=42;30:ow=43;30'
 export ZLS_COLORS=$LS_COLORS
 zstyle ':completion:*:default' list-colors ${(s.:.)LS_COLORS}
 

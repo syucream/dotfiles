@@ -182,6 +182,35 @@ NeoBundle 'AndrewRadev/switch.vim'
 " markdown
 NeoBundle 'tpope/vim-markdown'
 
+" neosnippet
+NeoBundle 'Shougo/neosnippet'
+" Plugin key-mappings.
+imap <C-k>     <Plug>(neosnippet_expand_or_jump)
+smap <C-k>     <Plug>(neosnippet_expand_or_jump)
+xmap <C-k>     <Plug>(neosnippet_expand_target)
+" SuperTab like snippets behavior.
+imap <expr><TAB> neosnippet#expandable_or_jumpable() ?
+\ "\<Plug>(neosnippet_expand_or_jump)"
+\: pumvisible() ? "\<C-n>" : "\<TAB>"
+smap <expr><TAB> neosnippet#expandable_or_jumpable() ?
+\ "\<Plug>(neosnippet_expand_or_jump)"
+\: "\<TAB>"
+" For snippet_complete marker.
+if has('conceal')
+  set conceallevel=2 concealcursor=i
+endif
+" Enable snipMate compatibility feature.
+let g:neosnippet#enable_snipmate_compatibility = 1
+" Tell Neosnippet about the other snippets
+let g:neosnippet#snippets_directory='~/.vim/bundle/vim-snippets/snippets'
+
+"" カラースキーマ {{{
+"" ---------------------------------------------------------------------------------------------------------- 
+
+colorscheme desert
+
+"" }}}
+
 " ステータスライン設定 {{{
 " ------------------------------------------------------------------------------------------------------------------------
 "
@@ -194,13 +223,13 @@ set laststatus=2
 " vim-airline
 NeoBundle 'bling/vim-airline'
 " powerline symbols
-let g:airline_left_sep = ''
-let g:airline_left_alt_sep = ''
-let g:airline_right_sep = ''
-let g:airline_right_alt_sep = ''
-let g:airline_fugitive_prefix = ' '
-let g:airline_readonly_symbol = ''
-let g:airline_linecolumn_prefix = ' '
+"let g:airline_left_sep = ''
+"let g:airline_left_alt_sep = ''
+"let g:airline_right_sep = ''
+"let g:airline_right_alt_sep = ''
+"let g:airline_fugitive_prefix = ' '
+"let g:airline_readonly_symbol = ''
+"let g:airline_linecolumn_prefix = ' '
 
 " }}}
 
@@ -224,7 +253,6 @@ NeoBundle 'eagletmt/unite-haddock'
 
 " }}}
 
-
 " unite.vim {{{
 " ------------------------------------------------------------------------------------------------------------------------
 
@@ -232,13 +260,14 @@ NeoBundle 'eagletmt/unite-haddock'
 NeoBundle 'unite.vim'
 
 ""unite.vim の各種設定
-nnoremap <silent> ,ub :<C-u>Unite buffer<CR> 
+nnoremap <silent> ,ub :<C-u>Unite buffer -auto-preview<CR> 
 nnoremap <silent> ,ud :<C-u>UniteWithBufferDir directory<CR> 
 nnoremap <silent> ,uf :<C-u>UniteWithBufferDir -buffer-name=files file<CR> 
 nnoremap <silent> ,ur :<C-u>Unite -buffer-name=register register<CR> 
 nnoremap <silent> ,um :<C-u>Unite file_mru<CR> 
 nnoremap <silent> ,uu :<C-u>Unite buffer file_mru<CR> 
 nnoremap <silent> ,uh :<C-u>Unite help<CR> 
+nnoremap <silent> ,uj :<C-u>Unite jump<CR> 
 nnoremap <silent> ,uo :<C-u>Unite outline<CR> 
 nnoremap <silent> ,uH :<C-u>Unite history/command history/search<CR>
 nnoremap <silent> ,uy :<C-u>Unite history/yank<CR>
@@ -283,17 +312,15 @@ NeoBundle 'ujihisa/unite-colorscheme'
 
 "" }}}
 
-
-"" ---------------------------------------------------------------------------------------------------------- 
 "" ref.vim {{{
+"" ---------------------------------------------------------------------------------------------------------- 
 "
 NeoBundle 'thinca/vim-ref'
 
 " }}}
-"
 
-" ---------------------------------------------------------------------------------------------------------- 
 "" 使ってないプラグイン {{{
+" ---------------------------------------------------------------------------------------------------------- 
 "
 " "accelerated-smooth-scroll
 " "滑らかな加速スクロールを行うプラグイン
@@ -303,8 +330,8 @@ NeoBundle 'thinca/vim-ref'
 "
 " }}}
 
-"" ---------------------------------------------------------------------------------------------------------- 
 "" QFixHowm {{{
+"" ---------------------------------------------------------------------------------------------------------- 
 "
 NeoBundle 'fuenor/qfixhowm'
 
@@ -330,7 +357,6 @@ let QFixHown_UserFileExt = suffix
 let qfixmemo_filename = '%Y/%m/%Y-%m-%d-%H%M%S.'.suffix
 
 "" }}}
-
 
 filetype plugin indent on     
 
