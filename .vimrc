@@ -370,6 +370,7 @@ let qfixmemo_filename = '%Y/%m/%Y-%m-%d-%H%M%S.'.suffix
 " org-mode {{{
 "" ---------------------------------------------------------------------------------------------------------- 
 NeoBundle 'jceb/vim-orgmode'
+NeoBundle 'tpope/vim-speeddating'
 "" }}}
 
 filetype plugin indent on     
