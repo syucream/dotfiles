@@ -146,23 +146,6 @@ NeoBundle 'tyru/open-browser.vim'
 " NeoBundle 'tyru/restart.vim'
 " let g:restart_sessionoptions = 'blank,buffers,curdir,folds,help,localoptions,tabpages'
 
-" submode
-NeoBundle 'kana/vim-submode'
-" window-control submode
-call submode#enter_with('winsize', 'n', '', '<C-w>>', '<C-w>>')
-call submode#enter_with('winsize', 'n', '', '<C-w><', '<C-w><')
-call submode#enter_with('winsize', 'n', '', '<C-w>+', '<C-w>-')
-call submode#enter_with('winsize', 'n', '', '<C-w>-', '<C-w>+')
-call submode#map('winsize', 'n', '', '>', '<C-w>>')
-call submode#map('winsize', 'n', '', '<', '<C-w><')
-call submode#map('winsize', 'n', '', '+', '<C-w>-')
-call submode#map('winsize', 'n', '', '-', '<C-w>+')
-" tab-control submode
-call submode#enter_with('changetab', 'n', '', 'gt', 'gt')
-call submode#enter_with('changetab', 'n', '', 'gT', 'gT')
-call submode#map('changetab', 'n', '', 't', 'gt')
-call submode#map('changetab', 'n', '', 'T', 'gT')
-
 " yanktmp
 NeoBundle 'vim-scripts/yanktmp.vim'
 map <silent> sy :call YanktmpYank()<cr>
@@ -182,7 +165,31 @@ NeoBundle 'AndrewRadev/switch.vim'
 " markdown
 NeoBundle 'tpope/vim-markdown'
 
-" neosnippet
+" syntastic
+NeoBundle 'scrooloose/syntastic'
+
+" submode {{{
+"" ---------------------------------------------------------------------------------------------------------- 
+NeoBundle 'kana/vim-submode'
+" window-control submode
+call submode#enter_with('winsize', 'n', '', '<C-w>>', '<C-w>>')
+call submode#enter_with('winsize', 'n', '', '<C-w><', '<C-w><')
+call submode#enter_with('winsize', 'n', '', '<C-w>+', '<C-w>-')
+call submode#enter_with('winsize', 'n', '', '<C-w>-', '<C-w>+')
+call submode#map('winsize', 'n', '', '>', '<C-w>>')
+call submode#map('winsize', 'n', '', '<', '<C-w><')
+call submode#map('winsize', 'n', '', '+', '<C-w>-')
+call submode#map('winsize', 'n', '', '-', '<C-w>+')
+" tab-control submode
+call submode#enter_with('changetab', 'n', '', 'gt', 'gt')
+call submode#enter_with('changetab', 'n', '', 'gT', 'gT')
+call submode#map('changetab', 'n', '', 't', 'gt')
+call submode#map('changetab', 'n', '', 'T', 'gT')
+
+" }}}
+
+" neosnippet {{{
+"" ---------------------------------------------------------------------------------------------------------- 
 NeoBundle 'Shougo/neosnippet'
 " Plugin key-mappings.
 imap <C-k>     <Plug>(neosnippet_expand_or_jump)
@@ -204,7 +211,9 @@ let g:neosnippet#enable_snipmate_compatibility = 1
 " Tell Neosnippet about the other snippets
 let g:neosnippet#snippets_directory='~/.vim/bundle/vim-snippets/snippets'
 
-"" カラースキーマ {{{
+"" }}}
+
+" カラースキーマ {{{
 "" ---------------------------------------------------------------------------------------------------------- 
 
 colorscheme desert
@@ -312,14 +321,14 @@ NeoBundle 'ujihisa/unite-colorscheme'
 
 "" }}}
 
-"" ref.vim {{{
+" ref.vim {{{
 "" ---------------------------------------------------------------------------------------------------------- 
 "
 NeoBundle 'thinca/vim-ref'
 
 " }}}
 
-"" 使ってないプラグイン {{{
+" 使ってないプラグイン {{{
 " ---------------------------------------------------------------------------------------------------------- 
 "
 " "accelerated-smooth-scroll
@@ -330,7 +339,7 @@ NeoBundle 'thinca/vim-ref'
 "
 " }}}
 
-"" QFixHowm {{{
+" QFixHowm {{{
 "" ---------------------------------------------------------------------------------------------------------- 
 "
 NeoBundle 'fuenor/qfixhowm'
@@ -358,7 +367,7 @@ let qfixmemo_filename = '%Y/%m/%Y-%m-%d-%H%M%S.'.suffix
 
 "" }}}
 
-"" org-mode {{{
+" org-mode {{{
 "" ---------------------------------------------------------------------------------------------------------- 
 NeoBundle 'jceb/vim-orgmode'
 "" }}}
