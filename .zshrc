@@ -1,6 +1,6 @@
-#
-# PATH
-#
+# PATH {{{
+# ---------------------------------------------------------------------------------------------------- 
+
 
 # for Android develop
 PATH=$PATH:$HOME/android-sdk-mac_86/platform-tools/
@@ -15,10 +15,11 @@ PATH=$PATH:$HOME/.cabal/bin
 if [[ -s ~/.rvm/scripts/rvm ]] ; then source ~/.rvm/scripts/rvm ; fi
 source "$HOME/.rvm/scripts/rvm"
 
+# }}}
 
-#
-# alias 
-#
+# alias {{{
+# ---------------------------------------------------------------------------------------------------- 
+
 alias sc='screen'
 alias tmux='tmux -2'
 alias tm='tmux'
@@ -49,14 +50,11 @@ alias gitdf='git diff --color'
 alias allfinder='defaults write com.apple.finder AppleShowAllFiles -boolean true; killall Finder'
 alias protfinder='defaults delete com.apple.finder AppleShowAllFiles; killall Finder'
 
-export LANG=ja_JP.UTF-8
-HISTFILE=$HOME/.zsh-history
-HISTSIZE=100000
-SAVEHIST=100000
+# }}}
 
-#
-# ls に色を付ける
-#
+# ls に色を付ける {{{
+# ---------------------------------------------------------------------------------------------------- 
+
 case "${OSTYPE}" in
 freebsd*|darwin*)
 # alias ls="ls -G -w"
@@ -77,10 +75,10 @@ if [ -f ~/.dircolors ]; then
     fi
 fi
 
+# }}}
 
-#
-## プロンプト設定
-#
+# プロンプト設定 {{{
+# ---------------------------------------------------------------------------------------------------- 
 
 # ${fg[...]} や $reset_color をロード
 autoload -U colors; colors
@@ -127,6 +125,13 @@ case ${UID} in
   RPROMPT='[`rprompt-git-current-branch`%{${fg[cyan]}%}%~%{${reset_color}%}]'
   ;;
 esac
+
+# }}}
+
+export LANG=ja_JP.UTF-8
+HISTFILE=$HOME/.zsh-history
+HISTSIZE=100000
+SAVEHIST=100000
 
 ## コアダンプサイズを制限
 limit coredumpsize 102400
@@ -188,13 +193,14 @@ setopt print_eight_bit
 ## ヒストリを共有
 setopt share_history
 
+## cd後にlsを実行する
+setopt auto_cd
+function chpwd() { ls }
 
-#
-## 補完関連
-#
+# 補完関連 {{{
+# ---------------------------------------------------------------------------------------------------- 
 
 ## 補完候補のカーソル選択を有効に
-#zstyle ':completion:*:default' menu select=1
 ## 補完候補の色づけ
 export ZLS_COLORS=$LS_COLORS
 autoload -U compinit
@@ -218,11 +224,10 @@ setopt correct
 ## 最後のスラッシュを自動的に削除しない
 setopt noautoremoveslash
 
-## cd後にlsを実行する
-setopt auto_cd
-function chpwd() { ls }
+# }}}
 
-## 検索
+# テキストブラウザ検索設定 {{{
+# ---------------------------------------------------------------------------------------------------- 
 export TEXT_BROWSER=w3m
 function _space2p20
 {
@@ -249,6 +254,7 @@ function wikipedia
 {
 	    ${TEXT_BROWSER} http://ja.wikipedia.org/wiki/`_space2p20 $@`
 }
+# }}}
 
 ## preexec コマンド実行前に呼ばれる
 preexec()
