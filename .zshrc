@@ -54,8 +54,9 @@ HISTFILE=$HOME/.zsh-history
 HISTSIZE=100000
 SAVEHIST=100000
 
-
+#
 # ls に色を付ける
+#
 case "${OSTYPE}" in
 freebsd*|darwin*)
 # alias ls="ls -G -w"
@@ -166,9 +167,6 @@ setopt pushd_ignore_dups
 ## ファイル名で #, ~, ^ の 3 文字を正規表現として扱う
 setopt extended_glob
 
-## TAB で順に補完候補を切り替える
-setopt auto_menu
-
 ## zsh の開始, 終了時刻をヒストリファイルに書き込む
 setopt extended_history
 
@@ -196,10 +194,14 @@ setopt share_history
 #
 
 ## 補完候補のカーソル選択を有効に
-zstyle ':completion:*:default' menu select=1
+#zstyle ':completion:*:default' menu select=1
 ## 補完候補の色づけ
 export ZLS_COLORS=$LS_COLORS
+autoload -U compinit
+compinit
 zstyle ':completion:*:default' list-colors ${(s.:.)LS_COLORS}
+## TAB で順に補完候補を切り替える
+setopt auto_menu
 
 ## ディレクトリ名だけで cd
 setopt auto_cd
@@ -215,6 +217,10 @@ setopt correct
 
 ## 最後のスラッシュを自動的に削除しない
 setopt noautoremoveslash
+
+## cd後にlsを実行する
+setopt auto_cd
+function chpwd() { ls }
 
 ## 検索
 export TEXT_BROWSER=w3m
