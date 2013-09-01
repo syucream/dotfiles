@@ -200,12 +200,19 @@ function chpwd() { ls }
 # 補完関連 {{{
 # ---------------------------------------------------------------------------------------------------- 
 
-## 補完候補のカーソル選択を有効に
-## 補完候補の色づけ
-export ZLS_COLORS=$LS_COLORS
+# 補完設定を読み込む
+fpath=(~/.zsh/completion $fpath)
+
+## 補完を有効にする
 autoload -U compinit
 compinit
+
+## 補完候補のカーソル選択を有効に
+zstyle ':completion:*:default' menu select=1
+## 補完候補の色づけ
+export ZLS_COLORS=$LS_COLORS
 zstyle ':completion:*:default' list-colors ${(s.:.)LS_COLORS}
+
 ## TAB で順に補完候補を切り替える
 setopt auto_menu
 
@@ -223,6 +230,7 @@ setopt correct
 
 ## 最後のスラッシュを自動的に削除しない
 setopt noautoremoveslash
+
 
 # }}}
 
