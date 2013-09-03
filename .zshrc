@@ -191,7 +191,7 @@ setopt numeric_glob_sort
 setopt print_eight_bit
 
 ## ヒストリを共有
-setopt share_history
+#setopt share_history
 
 ## cd後にlsを実行する
 setopt auto_cd

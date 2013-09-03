@@ -165,6 +165,9 @@ NeoBundle 'AndrewRadev/switch.vim'
 " markdown
 NeoBundle 'tpope/vim-markdown'
 
+" reST
+NeoBundle 'Rykka/riv.vim'
+
 " syntastic
 NeoBundle 'scrooloose/syntastic'
 
@@ -270,13 +273,14 @@ NeoBundle 'unite.vim'
 
 ""unite.vim の各種設定
 nnoremap <silent> ,ub :<C-u>Unite buffer -auto-preview<CR> 
+nnoremap <silent> ,uU :<C-u>Unite buffer file_mru<CR> 
 nnoremap <silent> ,ud :<C-u>UniteWithBufferDir directory<CR> 
 nnoremap <silent> ,uf :<C-u>UniteWithBufferDir -buffer-name=files file<CR> 
+nnoremap <silent> ,uF :<C-u>Unite file_mru<CR> 
 nnoremap <silent> ,ur :<C-u>Unite -buffer-name=register register<CR> 
-nnoremap <silent> ,um :<C-u>Unite file_mru<CR> 
-nnoremap <silent> ,uu :<C-u>Unite buffer file_mru<CR> 
 nnoremap <silent> ,uh :<C-u>Unite help<CR> 
-nnoremap <silent> ,uj :<C-u>Unite jump<CR> 
+nnoremap <silent> ,um :<C-u>Unite mark -auto-preview<CR> 
+nnoremap <silent> ,uj :<C-u>Unite jump -auto-preview<CR> 
 nnoremap <silent> ,uo :<C-u>Unite outline<CR> 
 nnoremap <silent> ,uH :<C-u>Unite history/command history/search<CR>
 nnoremap <silent> ,uy :<C-u>Unite history/yank<CR>
@@ -318,6 +322,9 @@ NeoBundle 'osyo-manga/unite-qfixhowm'
 
 " Unite-colorscheme
 NeoBundle 'ujihisa/unite-colorscheme'
+
+" unite-mark
+NeoBundle 'tacroe/unite-mark'
 
 "" }}}
 
