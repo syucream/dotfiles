@@ -70,7 +70,7 @@ function! s:my_tabline()  "{{{
   return s
 endfunction "}}}
 let &tabline = '%!'. s:SID_PREFIX() . 'my_tabline()'
-set showtabline=2 " 常にタブラインを表示
+set showtabline=1 " 複数タブを開いたら、タブラインを表示
 
 " The prefix key.
 nnoremap    [Tag]   <Nop>
@@ -127,6 +127,7 @@ NeoBundle 'Shougo/vimproc', {
 "set laststatus=2
 "nmap <c-n> :bn<CR>
 "nmap <c-n> :bp<CR>
+
 
 " vim-fugitive
 NeoBundle 'tpope/vim-fugitive'
@@ -189,9 +190,6 @@ NeoBundle 'kannokanno/previm'
 
 " open-browser
 NeoBundle 'tyru/open-browser.vim'
-
-" shadowmarks
-" NeoBundle 'vim-scripts/ShowMarks'
 
 " restart.vim
 " gVimじゃないと使えない？
