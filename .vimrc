@@ -25,6 +25,8 @@ set encoding=japan
 set fileencodings=utf-8
 set fenc=utf-8
 set enc=utf-8
+" バックスペースで改行削除
+set backspace=2
 " 検索
 set hlsearch
 nnoremap <ESC><ESC> :nohlsearch<CR>
