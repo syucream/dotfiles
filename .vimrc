@@ -120,17 +120,6 @@ NeoBundle 'Shougo/vimproc', {
 \    },
 \ }
 
-" buftabs
-"NeoBundle 'vim-scripts/buftabs'
-"let g:buftabs_only_basename = 1
-"let g:buftabs_in_statusline = 1
-"let g:buftabs_active_highlight_group = "Visual"
-"set statusline=%=\ [%{(&fenc!=''?&fenc:&enc)}/%{&ff}]\[%Y]\[%04l,%04v][%p%%]
-"set laststatus=2
-"nmap <c-n> :bn<CR>
-"nmap <c-n> :bp<CR>
-
-
 " vim-fugitive
 NeoBundle 'tpope/vim-fugitive'
 
@@ -139,9 +128,6 @@ NeoBundle 'rails.vim'
 
 " sudo
 NeoBundle 'sudo.vim'
-
-"NeoBundle 'git://github.com/fuenor/im_control.vim.git'
-" TODO: IMごとの設定を書く
 
 " vimshell
 NeoBundle 'Shougo/vimshell'
@@ -192,11 +178,6 @@ NeoBundle 'kannokanno/previm'
 
 " open-browser
 NeoBundle 'tyru/open-browser.vim'
-
-" restart.vim
-" gVimじゃないと使えない？
-" NeoBundle 'tyru/restart.vim'
-" let g:restart_sessionoptions = 'blank,buffers,curdir,folds,help,localoptions,tabpages'
 
 " yanktmp
 NeoBundle 'vim-scripts/yanktmp.vim'
