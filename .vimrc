@@ -218,7 +218,7 @@ NeoBundle 'AndrewRadev/switch.vim'
 NeoBundle 'tpope/vim-markdown'
 
 " reST
-NeoBundle 'Rykka/riv.vim'
+" NeoBundle 'Rykka/riv.vim'
 
 " syntastic
 NeoBundle 'scrooloose/syntastic'

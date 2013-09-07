@@ -1,7 +1,6 @@
 # PATH {{{
 # ---------------------------------------------------------------------------------------------------- 
 
-
 # for Android develop
 PATH=$PATH:$HOME/android-sdk-mac_86/platform-tools/
 # for gls on MacOS
@@ -14,6 +13,17 @@ PATH=$PATH:$HOME/.cabal/bin
 # for rvm
 if [[ -s ~/.rvm/scripts/rvm ]] ; then source ~/.rvm/scripts/rvm ; fi
 source "$HOME/.rvm/scripts/rvm"
+
+# for MacOS
+case "${OSTYPE}" in
+freebsd*|darwin*)
+  # homebrew path
+  PATH=/usr/local/bin:$PATH
+;;
+esac
+
+# ~/local/bin
+PATH=~/local/bin:$PATH
 
 # }}}
 
@@ -46,9 +56,14 @@ alias gitpl='git pull'
 alias gitps='git push'
 alias gits='git status -sb'
 alias gitdf='git diff --color'
-# for mac
-alias allfinder='defaults write com.apple.finder AppleShowAllFiles -boolean true; killall Finder'
-alias protfinder='defaults delete com.apple.finder AppleShowAllFiles; killall Finder'
+
+# for MacOS
+case "${OSTYPE}" in
+freebsd*|darwin*)
+  alias allfinder='defaults write com.apple.finder AppleShowAllFiles -boolean true; killall Finder'
+  alias protfinder='defaults delete com.apple.finder AppleShowAllFiles; killall Finder'
+;;
+esac
 
 # }}}
 
