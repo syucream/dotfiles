@@ -204,6 +204,21 @@ NeoBundle 'tpope/vim-markdown'
 " syntastic
 NeoBundle 'scrooloose/syntastic'
 
+" gitv
+NeoBundle 'gregsexton/gitv'
+" gitv固有の設定
+autocmd FileType gitv call s:my_gitv_settings()
+function! s:my_gitv_settings()
+  " fd でdiffを表示/非表示切り替え
+  nnoremap <silent><buffer> fd :<C-u>windo call <SID>toggle_git_folding()<CR>1<C-w>w
+endfunction
+autocmd FileType git setlocal nofoldenable foldlevel=0
+function! s:toggle_git_folding()
+  if &filetype ==# 'git'
+    setlocal foldenable!
+  endif
+endfunction
+
 " }}}
 
 " submode {{{
