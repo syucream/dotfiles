@@ -219,6 +219,12 @@ function! s:toggle_git_folding()
   endif
 endfunction
 
+" CCTree
+" Depend on ctags, cscope
+" 使用前にプロジェクトのルートディレクトリで $ ctags -R && cscope -b -c -R
+" TODO: 何故かftplugin以下に置いておくとロードしてくれない。暫定的に~/.vim/plugin にコピーして使う？
+NeoBundle 'vim-scripts/CCTree'
+
 " }}}
 
 " submode {{{
