@@ -47,15 +47,16 @@ alias df="df -h"
 alias ks='ls'
 alias lks='ls'
 # for git
+alias gbr='git branch'
+alias gco='git checkout'
+alias gst='git status -sb'
+alias gdf='git diff --color'
+alias glg='git log --color'
 alias gitaa='git add .'
-alias gitb='git branch'
-alias gitco='git checkout'
 alias gitcm='git commit'
 alias gitf='git fetch'
 alias gitpl='git pull'
 alias gitps='git push'
-alias gits='git status -sb'
-alias gitdf='git diff --color'
 
 # for MacOS
 case "${OSTYPE}" in
