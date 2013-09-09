@@ -411,22 +411,22 @@ NeoBundle 'fuenor/qfixhowm'
 let QFixHowm_Key = 'g'
 " デフォルトの保存先
 " let qfixmemo_dir = $HOME . '/Dropbox/tmp/QFixMemo'
-let qfixmemo_dir = $HOME . '/tmp/QFixMemo'
-" " デフォルトのファイル名命名規則
-let qfixmemo_filename = '%Y/%m/%Y-%m-%d-%H%M%S.txt'
-" " メモのエンコーディング
-let qfixmemo_fileencoding = 'utf-8'
-" " メモの改行コード
-let qfixmemo_fileformat = 'unix'
-" " シンタックスハイライトにMarkdown のものを使用する
+let howm_dir = $HOME . '/tmp/QFixMemo'
+" メモのエンコーディング
+let howm_fileencoding = 'utf-8'
+" メモの改行コード
+let howm_fileformat = 'unix'
+" シンタックスハイライトにMarkdown のものを使用する
 let QFixHown_FileType = 'hown_memo.markdown'
-" " QFixHown + Markdown
+" QFixHown + Markdown
 let QFixHown_HownMode = 0
 let QFixHown_Title = '#'
 let suffix = 'mkd'
 let QFixHown_UserFileType = 'markdown'
 let QFixHown_UserFileExt = suffix
-let qfixmemo_filename = '%Y/%m/%Y-%m-%d-%H%M%S.'.suffix
+let howm_filename = '%Y/%m/%Y-%m-%d-%H%M%S.'.suffix
+" howm折り畳みを無効にする
+let QFixHowm_Folding = 0
 
 "" }}}
 
