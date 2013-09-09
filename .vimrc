@@ -417,16 +417,16 @@ let howm_fileencoding = 'utf-8'
 " メモの改行コード
 let howm_fileformat = 'unix'
 " シンタックスハイライトにMarkdown のものを使用する
-let QFixHown_FileType = 'hown_memo.markdown'
+let QFixHowm_FileType = 'hown_memo.markdown'
 " QFixHown + Markdown
-let QFixHown_HownMode = 0
-let QFixHown_Title = '#'
+let QFixHowm_HownMode = 0
+let QFixHowm_Title = '#'
 let suffix = 'mkd'
-let QFixHown_UserFileType = 'markdown'
-let QFixHown_UserFileExt = suffix
+let QFixHowm_UserFileType = 'markdown'
+let QFixHowm_UserFileExt = suffix
 let howm_filename = '%Y/%m/%Y-%m-%d-%H%M%S.'.suffix
 " howm折り畳みを無効にする
-let QFixHowm_Folding = 0
+" let QFixHowm_Folding = 0
 
 "" }}}
 
