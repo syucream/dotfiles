@@ -35,7 +35,7 @@ nnoremap <ESC><ESC> :nohlsearch<CR>
 nnoremap qq: <Esc>q:
 noremap q: <Nop>
 
-" }}}
+" }}} 
 
 "  折りたたみ設定 {{{
 " ------------------------------------------------------------------------------------------------------------------------
@@ -327,7 +327,7 @@ NeoBundle 'eagletmt/unite-haddock'
 
 NeoBundle 'unite.vim'
 
-""unite.vim の各種設定
+" Unite.vim オレオレキーマッピング
 nnoremap <silent> ,ub :<C-u>Unite buffer -auto-preview<CR> 
 nnoremap <silent> ,uU :<C-u>Unite buffer file_mru<CR> 
 nnoremap <silent> ,ud :<C-u>UniteWithBufferDir directory<CR> 
@@ -337,7 +337,9 @@ nnoremap <silent> ,ur :<C-u>Unite -buffer-name=register register<CR>
 nnoremap <silent> ,uh :<C-u>Unite help<CR> 
 nnoremap <silent> ,um :<C-u>Unite mark -auto-preview<CR> 
 nnoremap <silent> ,uj :<C-u>Unite jump -auto-preview<CR> 
-nnoremap <silent> ,uo :<C-u>Unite outline<CR> 
+nnoremap <silent> ,uol :<C-u>Unite outline<CR> 
+nnoremap <silent> ,uov :<C-u>Unite outline -vertical -winwidth=30 -no-quit<CR> 
+nnoremap <silent> ,uoh :<C-u>Unite outline -winheight=30 -no-quit<CR> 
 nnoremap <silent> ,uH :<C-u>Unite history/command history/search<CR>
 nnoremap <silent> ,uy :<C-u>Unite history/yank<CR>
 nnoremap <silent> ,ua :<C-u>UniteWithBufferDir -buffer-name=files buffer file_mru bookmark file directory<CR>
