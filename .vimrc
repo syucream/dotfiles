@@ -419,7 +419,7 @@ let howm_fileencoding = 'utf-8'
 " メモの改行コード
 let howm_fileformat = 'unix'
 " シンタックスハイライトにMarkdown のものを使用する
-let QFixHowm_FileType = 'hown_memo.markdown'
+let QFixHowm_FileType = 'markdown'
 " QFixHown + Markdown
 let QFixHowm_HownMode = 0
 let QFixHowm_Title = '#'
