@@ -51,7 +51,7 @@ alias gbr='git branch'
 alias gco='git checkout'
 alias gst='git status -sb'
 alias gdf='git diff --color'
-alias glg='git log --color'
+alias glog='git log --color'
 alias gitaa='git add .'
 alias gitcm='git commit'
 alias gitf='git fetch'
@@ -148,6 +148,9 @@ export LANG=ja_JP.UTF-8
 HISTFILE=$HOME/.zsh-history
 HISTSIZE=100000
 SAVEHIST=100000
+
+# Vi キーバインド
+bindkey -v
 
 ## コアダンプサイズを制限
 limit coredumpsize 102400
