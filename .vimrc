@@ -225,6 +225,9 @@ endfunction
 " TODO: 何故かftplugin以下に置いておくとロードしてくれない。暫定的に~/.vim/plugin にコピーして使う？
 NeoBundle 'vim-scripts/CCTree'
 
+" エキサイト翻訳
+NeoBundle 'mattn/excitetranslate-vim'
+
 " }}}
 
 " submode {{{
@@ -334,6 +337,7 @@ nnoremap <silent> ,ud :<C-u>UniteWithBufferDir directory<CR>
 nnoremap <silent> ,uf :<C-u>UniteWithBufferDir -buffer-name=files file<CR> 
 nnoremap <silent> ,uF :<C-u>Unite file_mru<CR> 
 nnoremap <silent> ,ur :<C-u>Unite -buffer-name=register register<CR> 
+nnoremap <silent> ,ug :<C-u>Unite grep<CR> 
 nnoremap <silent> ,uh :<C-u>Unite help<CR> 
 nnoremap <silent> ,um :<C-u>Unite mark -auto-preview<CR> 
 nnoremap <silent> ,uj :<C-u>Unite jump -auto-preview<CR> 
