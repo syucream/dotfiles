@@ -9,6 +9,10 @@ PATH=$PATH:/usr/local/opt/coreutils/libexec/gnubin
 PATH=$PATH:$HOME/.rvm/bin 
 # for cabal
 PATH=$PATH:$HOME/.cabal/bin 
+# for golang
+export GOROOT=/usr/local/go
+export GOPATH=$HOME/_go
+export PATH=$PATH:$GOROOT/bin:$GOPATH/bin
 
 # for rvm
 if [[ -s ~/.rvm/scripts/rvm ]] ; then source ~/.rvm/scripts/rvm ; fi
