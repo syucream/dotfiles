@@ -228,6 +228,13 @@ NeoBundle 'vim-scripts/CCTree'
 " エキサイト翻訳
 NeoBundle 'mattn/excitetranslate-vim'
 
+" prettyprint
+NeoBundle 'thinca/vim-prettyprint'
+
+" visualstar
+" 選択範囲で、* 検索を行う
+NeoBundle 'thinca/vim-visualstar'
+
 " }}}
 
 " submode {{{
@@ -324,6 +331,16 @@ NeoBundle 'eagletmt/unite-haddock'
 
 " }}}
 
+" for golang {{{
+" ------------------------------------------------------------------------------------------------------------------------
+
+if $GOROOT != ''
+  set rtp+=$GOROOT/misc/vim
+  exe "set rtp+=".globpath($GOPATH, "src/github.com/nsf/gocode/vim")
+endif
+
+" }}}
+
 " unite.vim {{{
 " ------------------------------------------------------------------------------------------------------------------------
 
@@ -342,7 +359,7 @@ nnoremap <silent> ,uh :<C-u>Unite help<CR>
 nnoremap <silent> ,um :<C-u>Unite mark -auto-preview<CR> 
 nnoremap <silent> ,uj :<C-u>Unite jump -auto-preview<CR> 
 nnoremap <silent> ,uol :<C-u>Unite outline<CR> 
-nnoremap <silent> ,uov :<C-u>Unite outline -vertical -winwidth=30 -no-quit<CR> 
+nnoremap <silent> ,uov :<C-u>Unite outline -vertical -winwidth=50 -no-quit<CR> 
 nnoremap <silent> ,uoh :<C-u>Unite outline -winheight=30 -no-quit<CR> 
 nnoremap <silent> ,uH :<C-u>Unite history/command history/search<CR>
 nnoremap <silent> ,uy :<C-u>Unite history/yank<CR>
@@ -370,8 +387,8 @@ NeoBundle 'thinca/vim-unite-history'
 let g:unite_source_history_yank_enable =1
 
 " unite-outline
-" Shougo さんのforkした方が最新リポジトリなので注意
-NeoBundle 'Shougo/unite-outline'
+" NeoBundle 'Shougo/unite-outline'
+NeoBundle 'syucream/unite-outline'
 
 " unite-gtags
 NeoBundle 'hewes/unite-gtags'
@@ -387,6 +404,9 @@ NeoBundle 'ujihisa/unite-colorscheme'
 
 " unite-mark
 NeoBundle 'tacroe/unite-mark'
+
+" editvar & unite-variable
+NeoBundle 'thinca/vim-editvar'
 
 "" }}}
 
