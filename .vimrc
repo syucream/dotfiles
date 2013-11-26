@@ -210,7 +210,12 @@ NeoBundle 'gregsexton/gitv'
 autocmd FileType gitv call s:my_gitv_settings()
 function! s:my_gitv_settings()
   " fd でdiffを表示/非表示切り替え
-  nnoremap <silent><buffer> fd :<C-u>windo call <SID>toggle_git_folding()<CR>1<C-w>w
+  nnoremap <silent> <buffer>fd :<C-u>windo call <SID>toggle_git_folding()<CR>1<C-w>w
+  " 各種操作
+  nnoremap <buffer> <Space>rb :<C-u>Git rebase <C-r>=GitvGetCurrentHash()<CR><Space>
+  nnoremap <buffer> <Space>R :<C-u>Git revert <C-r>=GitvGetCurrentHash()<CR><CR>
+  nnoremap <buffer> <Space>h :<C-u>Git cherry-pick <C-r>=GitvGetCurrentHash()<CR><CR>
+  nnoremap <buffer> <Space>rh :<C-u>Git reset --hard <C-r>=GitvGetCurrentHash()<CR>
 endfunction
 autocmd FileType git setlocal nofoldenable foldlevel=0
 function! s:toggle_git_folding()
@@ -462,7 +467,6 @@ NeoBundle 'jceb/vim-orgmode'
 NeoBundle 'tpope/vim-speeddating'
 "" }}}
 
-
 filetype plugin indent on     
 
 " 
@@ -482,4 +486,9 @@ function! Fullpath()
   echo expand("%:p")
 endfunction
 :command! Fullpath :call Fullpath()
+
+" .po の横幅80文字目のカラムをハイライトする
+if exists('&colorcolumn')
+    autocmd FileType po set colorcolumn=+1 | setlocal textwidth=80
+endif
 
