@@ -4,3 +4,4 @@
 .unite
 etc/
 */
+*.local

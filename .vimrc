@@ -240,6 +240,9 @@ NeoBundle 'thinca/vim-prettyprint'
 " 選択範囲で、* 検索を行う
 NeoBundle 'thinca/vim-visualstar'
 
+" unite-pull-request
+NeoBundle 'joker1007/unite-pull-request'
+
 " }}}
 
 " submode {{{
@@ -490,5 +493,10 @@ endfunction
 " .po の横幅80文字目のカラムをハイライトする
 if exists('&colorcolumn')
     autocmd FileType po set colorcolumn=+1 | setlocal textwidth=80
+endif
+
+" .vimrc.local 読み込み
+if filereadable(expand('~/.vimrc.local'))
+  source ~/.vimrc.local
 endif
 
