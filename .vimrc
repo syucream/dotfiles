@@ -148,13 +148,11 @@ NeoBundle 'thinca/vim-quickrun'
 " <c-_><c-_> でコメントトグル
 NeoBundle 'tomtom/tcomment_vim'
 
-" neocomplcache
-NeoBundle 'Shougo/neocomplcache'
-" autocomplpop と競合するのでそちらは無効にする
-let g:acp_enableAtStartup = 0
-let g:neocomplcache_enable_at_startup = 1
-" Necoコマンドは無効化
-noremap Neco <Nop>
+" neocomplete
+NeoBundle 'Shougo/neocomplete.vim'
+" NeoBundle 'Shougo/neocomplcache'
+"let g:acp_enableAtStartup = 0
+"let g:neocomplcache_enable_at_startup = 1
 
 " command-t
 NeoBundle 'git://git.wincent.com/command-t.git'
