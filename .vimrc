@@ -203,6 +203,7 @@ NeoBundle 'tpope/vim-markdown'
 
 " syntastic
 NeoBundle 'scrooloose/syntastic'
+let g:syntastic_cpp_compiler_options = '-std=c++0x'
 
 " gitv
 NeoBundle 'gregsexton/gitv'
@@ -316,6 +317,30 @@ NeoBundle 'bling/vim-airline'
 "let g:airline_fugitive_prefix = ' '
 "let g:airline_readonly_symbol = ''
 "let g:airline_linecolumn_prefix = ' '
+
+" }}}
+
+" for C++ {{{
+" ------------------------------------------------------------------------------------------------------------------------
+"
+" ハイライト強化
+NeoBundleLazy 'vim-jp/cpp-vim', {
+            \ 'autoload' : {'filetypes' : 'cpp'}
+            \ }
+
+" 補完強化
+NeoBundle "osyo-manga/vim-reunions"
+NeoBundleLazy 'osyo-manga/vim-marching', {
+            \ 'depends' : ['Shougo/vimproc.vim', 'osyo-manga/vim-reunions'],
+            \ 'autoload' : {'filetypes' : ['c', 'cpp']}
+            \ }
+let g:marching_enable_neocomplete = 1
+let g:marching_clang_command = "clang"
+let g:marching_clang_command_option="-std=c++1y"
+
+" ヘッダとソースの表示切り替え
+NeoBundleLazy 'kana/vim-altr'
+nnoremap <Leader>a <Plug>(altr-forward)
 
 " }}}
 
