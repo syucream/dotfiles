@@ -111,7 +111,7 @@ NeoBundleFetch 'Shougo/neobundle.vim'
 NeoBundle 'mattn/webapi-vim'
 
 " vimproc
-NeoBundle 'Shougo/vimproc', {
+NeoBundle 'Shougo/vimproc.vim', {
 \ 'build' : {
 \     'windows' : 'make -f make_mingw32.mak',
 \     'cygwin' : 'make -f make_cygwin.mak',
@@ -149,10 +149,14 @@ NeoBundle 'thinca/vim-quickrun'
 NeoBundle 'tomtom/tcomment_vim'
 
 " neocomplete
-NeoBundle 'Shougo/neocomplete.vim'
-" NeoBundle 'Shougo/neocomplcache'
-"let g:acp_enableAtStartup = 0
-"let g:neocomplcache_enable_at_startup = 1
+if has('lua') && (v:version > 703 || (v:version == 703 && has('patch885')))
+    NeoBundle 'Shougo/neocomplete.vim'
+    NeoBundleFetch 'Shougo/neocomplcache.vim'
+else
+    NeoBundleFetch 'Shougo/neocomplete.vim'
+    NeoBundle 'Shougo/neocomplcache.vim'
+    let g:neocomplcache_enable_at_startup = 1
+endif
 
 " command-t
 NeoBundle 'git://git.wincent.com/command-t.git'
@@ -242,6 +246,9 @@ NeoBundle 'thinca/vim-visualstar'
 " unite-pull-request
 NeoBundle 'joker1007/unite-pull-request'
 
+" errormarker
+NeoBundle 'vim-scripts/errormarker.vim'
+
 " }}}
 
 " submode {{{
@@ -330,7 +337,7 @@ NeoBundleLazy 'vim-jp/cpp-vim', {
 " 補完強化
 NeoBundle "osyo-manga/vim-reunions"
 NeoBundleLazy 'osyo-manga/vim-marching', {
-            \ 'depends' : ['Shougo/vimproc.vim', 'osyo-manga/vim-reunions'],
+            \ 'depends' : ['osyo-manga/vim-reunions'],
             \ 'autoload' : {'filetypes' : ['c', 'cpp']}
             \ }
 let g:marching_enable_neocomplete = 1
@@ -380,7 +387,8 @@ endif
 NeoBundle 'unite.vim'
 
 " Unite.vim オレオレキーマッピング
-nnoremap <silent> ,ub :<C-u>Unite buffer -auto-preview<CR> 
+nnoremap <silent> ,ubf :<C-u>Unite buffer -auto-preview<CR> 
+nnoremap <silent> ,ubd :<C-u>Unite build<CR> 
 nnoremap <silent> ,uU :<C-u>Unite buffer file_mru<CR> 
 nnoremap <silent> ,ud :<C-u>UniteWithBufferDir directory<CR> 
 nnoremap <silent> ,uf :<C-u>UniteWithBufferDir -buffer-name=files file<CR> 
@@ -439,6 +447,9 @@ NeoBundle 'tacroe/unite-mark'
 
 " editvar & unite-variable
 NeoBundle 'thinca/vim-editvar'
+
+" unite-build
+NeoBundle 'Shougo/unite-build'
 
 "" }}}
 
