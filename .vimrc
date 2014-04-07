@@ -35,6 +35,9 @@ nnoremap <ESC><ESC> :nohlsearch<CR>
 nnoremap qq: <Esc>q:
 noremap q: <Nop>
 
+" Enable using w!! command to write file as super user
+cmap w!! w !sudo tee > /dev/null %
+
 " }}} 
 
 "  折りたたみ設定 {{{
@@ -125,9 +128,6 @@ NeoBundle 'tpope/vim-fugitive'
 
 " rails.vim
 NeoBundle 'rails.vim'
-
-" sudo
-NeoBundle 'sudo.vim'
 
 " vimshell
 NeoBundle 'Shougo/vimshell'
