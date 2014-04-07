@@ -243,9 +243,6 @@ NeoBundle 'thinca/vim-prettyprint'
 " 選択範囲で、* 検索を行う
 NeoBundle 'thinca/vim-visualstar'
 
-" unite-pull-request
-NeoBundle 'joker1007/unite-pull-request'
-
 " errormarker
 NeoBundle 'vim-scripts/errormarker.vim'
 
