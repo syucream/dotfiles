@@ -391,13 +391,13 @@ NeoBundle 'unite.vim'
 
 " Unite.vim オレオレキーマッピング
 nnoremap <silent> ,ubf :<C-u>Unite buffer -auto-preview<CR> 
-nnoremap <silent> ,ubd :<C-u>Unite build<CR> 
+nnoremap <silent> ,ubd :<C-u>Unite build -no-quit<CR> 
 nnoremap <silent> ,uU :<C-u>Unite buffer file_mru<CR> 
-nnoremap <silent> ,ud :<C-u>UniteWithBufferDir directory<CR> 
+nnoremap <silent> ,ud :<C-u>UniteWithBufferDir directory<CR>
 nnoremap <silent> ,uf :<C-u>UniteWithBufferDir -buffer-name=files file<CR> 
 nnoremap <silent> ,uF :<C-u>Unite file_mru<CR> 
 nnoremap <silent> ,ur :<C-u>Unite -buffer-name=register register<CR> 
-nnoremap <silent> ,ug :<C-u>Unite grep<CR> 
+nnoremap <silent> ,ug :<C-u>Unite grep -no-quit<CR>
 nnoremap <silent> ,uh :<C-u>Unite help<CR> 
 nnoremap <silent> ,um :<C-u>Unite mark -auto-preview<CR> 
 nnoremap <silent> ,uj :<C-u>Unite jump -auto-preview<CR> 
