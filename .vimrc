@@ -390,23 +390,22 @@ endif
 NeoBundle 'unite.vim'
 
 " Unite.vim オレオレキーマッピング
-nnoremap <silent> ,ubf :<C-u>Unite buffer -auto-preview<CR> 
-nnoremap <silent> ,ubd :<C-u>Unite build -no-quit<CR> 
-nnoremap <silent> ,uU :<C-u>Unite buffer file_mru<CR> 
-nnoremap <silent> ,ud :<C-u>UniteWithBufferDir directory<CR>
-nnoremap <silent> ,uf :<C-u>UniteWithBufferDir -buffer-name=files file<CR> 
-nnoremap <silent> ,uF :<C-u>Unite file_mru<CR> 
-nnoremap <silent> ,ur :<C-u>Unite -buffer-name=register register<CR> 
-nnoremap <silent> ,ug :<C-u>Unite grep -no-quit<CR>
-nnoremap <silent> ,uh :<C-u>Unite help<CR> 
-nnoremap <silent> ,um :<C-u>Unite mark -auto-preview<CR> 
-nnoremap <silent> ,uj :<C-u>Unite jump -auto-preview<CR> 
-nnoremap <silent> ,uol :<C-u>Unite outline<CR> 
-nnoremap <silent> ,uov :<C-u>Unite outline -vertical -winwidth=50 -no-quit<CR> 
-nnoremap <silent> ,uoh :<C-u>Unite outline -winheight=30 -no-quit<CR> 
-nnoremap <silent> ,uH :<C-u>Unite history/command history/search<CR>
-nnoremap <silent> ,uy :<C-u>Unite history/yank<CR>
-nnoremap <silent> ,ua :<C-u>UniteWithBufferDir -buffer-name=files buffer file_mru bookmark file directory<CR>
+nnoremap <silent> 'ua :<C-u>UniteWithBufferDir -buffer-name=files buffer file_mru bookmark file directory<CR>
+nnoremap <silent> 'ub :<C-u>Unite buffer<CR>
+nnoremap <silent> 'ud :<C-u>UniteWithBufferDir directory<CR>
+nnoremap <silent> 'uf :<C-u>UniteWithBufferDir -buffer-name=files file<CR>
+nnoremap <silent> 'uF :<C-u>Unite file_mru<CR>
+nnoremap <silent> 'ug :<C-u>Unite grep -no-quit<CR>
+nnoremap <silent> 'uh :<C-u>Unite help<CR>
+nnoremap <silent> 'uH :<C-u>Unite history/command history/search<CR>
+nnoremap <silent> 'uU :<C-u>Unite buffer file_mru<CR>
+nnoremap <silent> 'uj :<C-u>Unite jump -auto-preview<CR>
+nnoremap <silent> 'um :<C-u>Unite build -no-quit<CR>
+nnoremap <silent> 'uoh :<C-u>Unite outline -winheight=30 -no-quit<CR>
+nnoremap <silent> 'uol :<C-u>Unite outline<CR>
+nnoremap <silent> 'uov :<C-u>Unite outline -vertical -winwidth=50 -no-quit<CR>
+nnoremap <silent> 'ur :<C-u>Unite -buffer-name=register register<CR>
+nnoremap <silent> 'uy :<C-u>Unite history/yank<CR>
 
 "ウィンドウを分割して開く
 au FileType unite nnoremap <silent> <buffer> <expr> <C-j> unite#do_action('split')
