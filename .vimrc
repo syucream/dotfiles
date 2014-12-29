@@ -107,7 +107,7 @@ map <silent> [Tag]p :tabprevious<CR>
 if has('vim_starting')
   set rtp+=~/.vim/bundle/neobundle.vim
 endif
-call neobundle#rc( expand('~/.vim/bundle') )
+call neobundle#begin()
 NeoBundleFetch 'Shougo/neobundle.vim'
 
 " webapi-vim
@@ -192,7 +192,7 @@ let g:yanktmp_file = '~/.vim/yanktmp'
 NeoBundle 'tpope/vim-surround'
 
 " zen-coding
-NeoBundle 'mattn/zencoding-vim'
+NeoBundle 'mattn/emmet-vim'
 
 " switch.vim
 NeoBundle 'AndrewRadev/switch.vim'
@@ -256,21 +256,21 @@ nnoremap <silent> ,gh :<C-u>GitGutterLineHighlightsToggle<CR>
 
 " submode {{{
 "" ---------------------------------------------------------------------------------------------------------- 
-NeoBundle 'kana/vim-submode'
+" NeoBundle 'kana/vim-submode'
 " window-control submode
-call submode#enter_with('winsize', 'n', '', '<C-w>>', '<C-w>>')
-call submode#enter_with('winsize', 'n', '', '<C-w><', '<C-w><')
-call submode#enter_with('winsize', 'n', '', '<C-w>+', '<C-w>-')
-call submode#enter_with('winsize', 'n', '', '<C-w>-', '<C-w>+')
-call submode#map('winsize', 'n', '', '>', '<C-w>>')
-call submode#map('winsize', 'n', '', '<', '<C-w><')
-call submode#map('winsize', 'n', '', '+', '<C-w>-')
-call submode#map('winsize', 'n', '', '-', '<C-w>+')
+" call submode#enter_with('winsize', 'n', '', '<C-w>>', '<C-w>>')
+" call submode#enter_with('winsize', 'n', '', '<C-w><', '<C-w><')
+" call submode#enter_with('winsize', 'n', '', '<C-w>+', '<C-w>-')
+" call submode#enter_with('winsize', 'n', '', '<C-w>-', '<C-w>+')
+" call submode#map('winsize', 'n', '', '>', '<C-w>>')
+" call submode#map('winsize', 'n', '', '<', '<C-w><')
+" call submode#map('winsize', 'n', '', '+', '<C-w>-')
+" call submode#map('winsize', 'n', '', '-', '<C-w>+')
 " tab-control submode
-call submode#enter_with('changetab', 'n', '', 'gt', 'gt')
-call submode#enter_with('changetab', 'n', '', 'gT', 'gT')
-call submode#map('changetab', 'n', '', 't', 'gt')
-call submode#map('changetab', 'n', '', 'T', 'gT')
+" call submode#enter_with('changetab', 'n', '', 'gt', 'gt')
+" call submode#enter_with('changetab', 'n', '', 'gT', 'gT')
+" call submode#map('changetab', 'n', '', 't', 'gt')
+" call submode#map('changetab', 'n', '', 'T', 'gT')
 
 " }}}
 
@@ -339,10 +339,10 @@ NeoBundleLazy 'vim-jp/cpp-vim', {
 
 " 補完強化
 NeoBundle "osyo-manga/vim-reunions"
-NeoBundleLazy 'osyo-manga/vim-marching', {
-            \ 'depends' : ['osyo-manga/vim-reunions'],
-            \ 'autoload' : {'filetypes' : ['c', 'cpp']}
-            \ }
+" NeoBundleLazy 'osyo-manga/vim-marching', {
+"             \ 'depends' : ['osyo-manga/vim-reunions'],
+"             \ 'autoload' : {'filetypes' : ['c', 'cpp']}
+"             \ }
 let g:marching_enable_neocomplete = 1
 let g:marching_clang_command = "clang"
 let g:marching_clang_command_option="-std=c++1y"
@@ -506,6 +506,8 @@ let howm_filename = '%Y/%m/%Y-%m-%d-%H%M%S.'.suffix
 NeoBundle 'jceb/vim-orgmode'
 NeoBundle 'tpope/vim-speeddating'
 "" }}}
+
+call neobundle#end()
 
 filetype plugin indent on     
 
