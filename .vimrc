@@ -252,6 +252,8 @@ let g:gitgutter_enabled=0
 nnoremap <silent> ,gg :<C-u>GitGutterToggle<CR>
 nnoremap <silent> ,gh :<C-u>GitGutterLineHighlightsToggle<CR>
 
+NeoBundle 'wting/rust.vim' 
+
 " }}}
 
 " submode {{{
