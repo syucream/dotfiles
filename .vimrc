@@ -170,16 +170,9 @@ NeoBundle 'nathanaelkane/vim-indent-guides'
 " gtags.vim
 NeoBundle 'vim-scripts/gtags.vim'
 
-" gist-vim
-NeoBundle 'mattn/gist-vim'
-"" TODO: ローカル設定を入れる
-
 " previm
 " pure vim なmarkdownプレビューア
 NeoBundle 'kannokanno/previm'
-
-" open-browser
-NeoBundle 'tyru/open-browser.vim'
 
 " yanktmp
 NeoBundle 'vim-scripts/yanktmp.vim'
@@ -464,17 +457,6 @@ NeoBundle 'thinca/vim-ref'
 
 " }}}
 
-" 使ってないプラグイン {{{
-" ---------------------------------------------------------------------------------------------------------- 
-"
-" "accelerated-smooth-scroll
-" "滑らかな加速スクロールを行うプラグイン
-" NeoBundle 'yonchu/accelerated-smooth-scroll'
-" let g:ac_smooth_scroll_du_sleep_time_msec = 2
-" let g:ac_smooth_scroll_fb_sleep_time_msec = 2
-"
-" }}}
-
 " QFixHowm {{{
 "" ---------------------------------------------------------------------------------------------------------- 
 "
@@ -512,14 +494,6 @@ NeoBundle 'tpope/vim-speeddating'
 call neobundle#end()
 
 filetype plugin indent on     
-
-" 
-" 自作プラグインのロード 
-"
-"
-" qiita-vim 
-set runtimepath+=~/.vim/my_extention/qiita-vim/
-
 
 "
 " ユーザ定義関数
