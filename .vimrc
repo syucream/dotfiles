@@ -159,7 +159,7 @@ else
 endif
 
 " command-t
-NeoBundle 'git://git.wincent.com/command-t.git'
+NeoBundle 'wincent/command-t'
 
 " indent-guides
 NeoBundle 'nathanaelkane/vim-indent-guides'
