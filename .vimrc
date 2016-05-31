@@ -7,33 +7,47 @@ syntax on
 set t_Co=256
 highlight LineNr ctermfg=darkyellow 
 set cursorline
+
 " 行番号を表示
 set number
 set showmatch
 set smartcase
+
 " タブ、インデント関連
 set shiftwidth=2
 set tabstop=2
 set smartindent
 set expandtab
+
 " インデント変更時に選択状態を解除しない
 vnoremap < <gv
 vnoremap > >gv
+
 " 文字コード
 set termencoding=utf-8
 set encoding=japan
 set fileencodings=utf-8
 set fenc=utf-8
 set enc=utf-8
+
 " バックスペースで改行削除
 set backspace=2
+
 " 検索
 set hlsearch
 nnoremap <ESC><ESC> :nohlsearch<CR>
+
 " コマンド履歴表示
 " q: はtypo しやすいので無効にする。qq: を使うかq/ を使うこと
 nnoremap qq: <Esc>q:
 noremap q: <Nop>
+
+" color, highlight
+colorscheme desert
+if exists('&colorcolumn')
+    autocmd FileType po set colorcolumn=+1 | setlocal textwidth=80
+endif
+
 
 " Enable using w!! command to write file as super user
 cmap w!! w !sudo tee > /dev/null %
@@ -97,407 +111,46 @@ map <silent> [Tag]p :tabprevious<CR>
 
 " }}}
 
-" プラグイン全般 {{{
+" プラグイン関係 {{{
 " ------------------------------------------------------------------------------------------------------------------------
-
-
 "
-" neobundle.vim
+" dein.vim
+" see also: http://qiita.com/delphinus35/items/00ff2c0ba972c6e41542
 "
-if has('vim_starting')
-  set rtp+=~/.vim/bundle/neobundle.vim
-endif
-call neobundle#begin()
-NeoBundleFetch 'Shougo/neobundle.vim'
-
-" webapi-vim
-NeoBundle 'mattn/webapi-vim'
-
-" vimproc
-NeoBundle 'Shougo/vimproc.vim', {
-\ 'build' : {
-\     'windows' : 'make -f make_mingw32.mak',
-\     'cygwin' : 'make -f make_cygwin.mak',
-\     'mac' : 'make -f make_mac.mak',
-\     'unix' : 'make -f make_unix.mak',
-\    },
-\ }
-
-" vim-fugitive
-NeoBundle 'tpope/vim-fugitive'
-
-" rails.vim
-NeoBundle 'rails.vim'
-
-" vimshell
-NeoBundle 'Shougo/vimshell'
-
-" vimfiler
-NeoBundle 'Shougo/vimfiler'
-"let g:vimfiler_as_default_explorer = 1
-
-" EasyMotion
-" カーソル移動補助
-NeoBundle 'Lokaltog/vim-easymotion'
-let g:EasyMotion_leader_key = "'"
-
-" quickrun
-NeoBundle 'thinca/vim-quickrun'
-
-" tcomment
-" <c-_><c-_> でコメントトグル
-NeoBundle 'tomtom/tcomment_vim'
-
-" neocomplete
-if has('lua') && (v:version > 703 || (v:version == 703 && has('patch885')))
-    NeoBundle 'Shougo/neocomplete.vim'
-    NeoBundleFetch 'Shougo/neocomplcache.vim'
-else
-    NeoBundleFetch 'Shougo/neocomplete.vim'
-    NeoBundle 'Shougo/neocomplcache.vim'
-    let g:neocomplcache_enable_at_startup = 1
-endif
-
-" command-t
-NeoBundle 'wincent/command-t'
-
-" indent-guides
-NeoBundle 'nathanaelkane/vim-indent-guides'
-"let g:indent_guides_enable_on_vim_startup = 1
-"let g:indent_guides_color_change_parcent = 30
-"let g:indent_guides_guide_size = 1
-
-" gtags.vim
-NeoBundle 'vim-scripts/gtags.vim'
-
-" previm
-" pure vim なmarkdownプレビューア
-NeoBundle 'kannokanno/previm'
-
-" yanktmp
-NeoBundle 'vim-scripts/yanktmp.vim'
-map <silent> sy :call YanktmpYank()<cr>
-map <silent> sp :call YanktmpPaste_p()<cr>
-map <silent> sP :call YanktmpPaste_P()<cr> 
-let g:yanktmp_file = '~/.vim/yanktmp'
-
-" surround.vim
-NeoBundle 'tpope/vim-surround'
-
-" zen-coding
-NeoBundle 'mattn/emmet-vim'
-
-" switch.vim
-NeoBundle 'AndrewRadev/switch.vim'
-
-" markdown
-NeoBundle 'tpope/vim-markdown'
-
-" reST
-" NeoBundle 'Rykka/riv.vim'
-
-" syntastic
-NeoBundle 'scrooloose/syntastic'
-let g:syntastic_cpp_compiler_options = '-std=c++0x'
-
-" gitv
-NeoBundle 'gregsexton/gitv'
-" gitv固有の設定
-autocmd FileType gitv call s:my_gitv_settings()
-function! s:my_gitv_settings()
-  " fd でdiffを表示/非表示切り替え
-  nnoremap <silent> <buffer>fd :<C-u>windo call <SID>toggle_git_folding()<CR>1<C-w>w
-  " 各種操作
-  nnoremap <buffer> <Space>rb :<C-u>Git rebase <C-r>=GitvGetCurrentHash()<CR><Space>
-  nnoremap <buffer> <Space>R :<C-u>Git revert <C-r>=GitvGetCurrentHash()<CR><CR>
-  nnoremap <buffer> <Space>h :<C-u>Git cherry-pick <C-r>=GitvGetCurrentHash()<CR><CR>
-  nnoremap <buffer> <Space>rh :<C-u>Git reset --hard <C-r>=GitvGetCurrentHash()<CR>
-endfunction
-autocmd FileType git setlocal nofoldenable foldlevel=0
-function! s:toggle_git_folding()
-  if &filetype ==# 'git'
-    setlocal foldenable!
+" load (and setup) dein.vim
+let s:dein_dir = expand('~/.cache/dein')
+let s:dein_repo_dir = s:dein_dir . '/repos/github.com/Shougo/dein.vim'
+if &runtimepath !~# '/dein.vim'
+  if !isdirectory(s:dein_repo_dir)
+    execute '!git clone https://github.com/Shougo/dein.vim' s:dein_repo_dir
   endif
-endfunction
-
-" CCTree
-" Depend on ctags, cscope
-" 使用前にプロジェクトのルートディレクトリで $ ctags -R && cscope -b -c -R
-" TODO: 何故かftplugin以下に置いておくとロードしてくれない。暫定的に~/.vim/plugin にコピーして使う？
-NeoBundle 'vim-scripts/CCTree'
-
-" エキサイト翻訳
-NeoBundle 'mattn/excitetranslate-vim'
-
-" prettyprint
-NeoBundle 'thinca/vim-prettyprint'
-
-" visualstar
-" 選択範囲で、* 検索を行う
-NeoBundle 'thinca/vim-visualstar'
-
-" errormarker
-NeoBundle 'vim-scripts/errormarker.vim'
-
-" gitgutter
-NeoBundle 'airblade/vim-gitgutter'
-let g:gitgutter_enabled=0
-nnoremap <silent> ,gg :<C-u>GitGutterToggle<CR>
-nnoremap <silent> ,gh :<C-u>GitGutterLineHighlightsToggle<CR>
-
-NeoBundle 'wting/rust.vim' 
-
-" }}}
-
-" submode {{{
-"" ---------------------------------------------------------------------------------------------------------- 
-" NeoBundle 'kana/vim-submode'
-" window-control submode
-" call submode#enter_with('winsize', 'n', '', '<C-w>>', '<C-w>>')
-" call submode#enter_with('winsize', 'n', '', '<C-w><', '<C-w><')
-" call submode#enter_with('winsize', 'n', '', '<C-w>+', '<C-w>-')
-" call submode#enter_with('winsize', 'n', '', '<C-w>-', '<C-w>+')
-" call submode#map('winsize', 'n', '', '>', '<C-w>>')
-" call submode#map('winsize', 'n', '', '<', '<C-w><')
-" call submode#map('winsize', 'n', '', '+', '<C-w>-')
-" call submode#map('winsize', 'n', '', '-', '<C-w>+')
-" tab-control submode
-" call submode#enter_with('changetab', 'n', '', 'gt', 'gt')
-" call submode#enter_with('changetab', 'n', '', 'gT', 'gT')
-" call submode#map('changetab', 'n', '', 't', 'gt')
-" call submode#map('changetab', 'n', '', 'T', 'gT')
-
-" }}}
-
-" neosnippet {{{
-"" ---------------------------------------------------------------------------------------------------------- 
-NeoBundle 'Shougo/neosnippet'
-NeoBundle "Shougo/neosnippet-snippets"
-" Plugin key-mappings.
-imap <C-k>     <Plug>(neosnippet_expand_or_jump)
-smap <C-k>     <Plug>(neosnippet_expand_or_jump)
-xmap <C-k>     <Plug>(neosnippet_expand_target)
-" SuperTab like snippets behavior.
-imap <expr><TAB> neosnippet#expandable_or_jumpable() ?
-\ "\<Plug>(neosnippet_expand_or_jump)"
-\: pumvisible() ? "\<C-n>" : "\<TAB>"
-smap <expr><TAB> neosnippet#expandable_or_jumpable() ?
-\ "\<Plug>(neosnippet_expand_or_jump)"
-\: "\<TAB>"
-" For snippet_complete marker.
-if has('conceal')
-  set conceallevel=2 concealcursor=i
-endif
-" Enable snipMate compatibility feature.
-let g:neosnippet#enable_snipmate_compatibility = 1
-" Tell Neosnippet about the other snippets
-let g:neosnippet#snippets_directory='~/.vim/bundle/vim-snippets/snippets'
-
-"" }}}
-
-" カラースキーマ {{{
-"" ---------------------------------------------------------------------------------------------------------- 
-
-colorscheme desert
-
-"" }}}
-
-" ステータスライン設定 {{{
-" ------------------------------------------------------------------------------------------------------------------------
-"
-set laststatus=2
-
-" powerline
-" スペックによってはロードに時間がかかるかも
-"NeoBundle 'Lokaltog/powerline', { 'rtp' : 'powerline/bindings/vim' }
-
-" vim-airline
-NeoBundle 'bling/vim-airline'
-" powerline symbols
-"let g:airline_left_sep = ''
-"let g:airline_left_alt_sep = ''
-"let g:airline_right_sep = ''
-"let g:airline_right_alt_sep = ''
-"let g:airline_fugitive_prefix = ' '
-"let g:airline_readonly_symbol = ''
-"let g:airline_linecolumn_prefix = ' '
-
-" }}}
-
-" for C++ {{{
-" ------------------------------------------------------------------------------------------------------------------------
-"
-" ハイライト強化
-NeoBundleLazy 'vim-jp/cpp-vim', {
-            \ 'autoload' : {'filetypes' : 'cpp'}
-            \ }
-
-" 補完強化
-NeoBundle "osyo-manga/vim-reunions"
-" NeoBundleLazy 'osyo-manga/vim-marching', {
-"             \ 'depends' : ['osyo-manga/vim-reunions'],
-"             \ 'autoload' : {'filetypes' : ['c', 'cpp']}
-"             \ }
-let g:marching_enable_neocomplete = 1
-let g:marching_clang_command = "clang"
-let g:marching_clang_command_option="-std=c++1y"
-
-" ヘッダとソースの表示切り替え
-NeoBundleLazy 'kana/vim-altr'
-nnoremap <Leader>a <Plug>(altr-forward)
-
-" }}}
-
-" for Haskell {{{
-" ------------------------------------------------------------------------------------------------------------------------
-"
-" ハイライト強化
-NeoBundle 'dag/vim2hs'
-
-" ghcmod 連携
-NeoBundle 'eagletmt/ghcmod-vim'
-
-" yesod のhtmlテンプレートのハイライト強化
-NeoBundle 'pbrisbin/html-template-syntax'
-
-" Haskell 向けneocomplcache 強化
-NeoBundle 'ujihisa/neco-ghc'
-
-" unite のhaddockソース
-NeoBundle 'eagletmt/unite-haddock'
-
-" }}}
-
-" for golang {{{
-" ------------------------------------------------------------------------------------------------------------------------
-
-if $GOROOT != ''
-  set rtp+=$GOROOT/misc/vim
-  exe "set rtp+=".globpath($GOPATH, "src/github.com/nsf/gocode/vim")
+  execute 'set runtimepath^=' . fnamemodify(s:dein_repo_dir, ':p')
 endif
 
-" }}}
+" load plugins via dein.vim
+if dein#load_state(s:dein_dir)
+  call dein#begin(s:dein_dir)
 
-" unite.vim {{{
-" ------------------------------------------------------------------------------------------------------------------------
+  let g:rc_dir    = expand('~/.vim/rc')
+  let s:toml      = g:rc_dir . '/dein.toml'
+  let s:lazy_toml = g:rc_dir . '/dein_lazy.toml'
 
+  call dein#load_toml(s:toml,      {'lazy': 0})
+  call dein#load_toml(s:lazy_toml, {'lazy': 1})
 
-NeoBundle 'unite.vim'
-
-" Unite.vim オレオレキーマッピング
-nnoremap <silent> 'ua :<C-u>UniteWithBufferDir -buffer-name=files buffer file_mru bookmark file directory<CR>
-nnoremap <silent> 'ub :<C-u>Unite buffer<CR>
-nnoremap <silent> 'ud :<C-u>UniteWithBufferDir directory<CR>
-nnoremap <silent> 'uf :<C-u>UniteWithBufferDir -buffer-name=files file<CR>
-nnoremap <silent> 'uF :<C-u>Unite file_mru<CR>
-nnoremap <silent> 'ug :<C-u>Unite grep<CR>
-nnoremap <silent> 'uh :<C-u>Unite help<CR>
-nnoremap <silent> 'uH :<C-u>Unite history/command history/search<CR>
-nnoremap <silent> 'uU :<C-u>Unite buffer file_mru<CR>
-nnoremap <silent> 'uj :<C-u>Unite jump -auto-preview<CR>
-nnoremap <silent> 'um :<C-u>Unite build -no-quit<CR>
-nnoremap <silent> 'uoh :<C-u>Unite outline -winheight=30<CR>
-nnoremap <silent> 'uol :<C-u>Unite outline<CR>
-nnoremap <silent> 'uov :<C-u>Unite outline -vertical -winwidth=40<CR>
-nnoremap <silent> 'ur :<C-u>Unite -buffer-name=register register<CR>
-nnoremap <silent> 'uy :<C-u>Unite history/yank<CR>
-
-"ウィンドウを分割して開く
-au FileType unite nnoremap <silent> <buffer> <expr> <C-j> unite#do_action('split')
-au FileType unite inoremap <silent> <buffer> <expr> <C-j> unite#do_action('split')
-
-"ウィンドウを縦に分割して開く
-au FileType unite nnoremap <silent> <buffer> <expr> <C-l> unite#do_action('vsplit')
-au FileType unite inoremap <silent> <buffer> <expr> <C-l> unite#do_action('vsplit')
-
-"ESCキーを2回押すと終了する
-au FileType unite nnoremap <silent> <buffer> <ESC><ESC> q
-au FileType unite inoremap <silent> <buffer> <ESC><ESC> <ESC>q
-
-" unite-help.vim
-NeoBundle 'tsukkee/unite-help'
-
-" unite-history
-" コマンド、検索処理の履歴を表示
-NeoBundle 'thinca/vim-unite-history'
-" パラメータ
-let g:unite_source_history_yank_enable =1
-
-" unite-outline
-" NeoBundle 'Shougo/unite-outline'
-NeoBundle 'syucream/unite-outline'
-
-" unite-gtags
-NeoBundle 'hewes/unite-gtags'
-
-" unite-quickfix
-NeoBundle 'osyo-manga/unite-quickfix'
-
-" unite-qfixhowm
-NeoBundle 'osyo-manga/unite-qfixhowm'
-
-" Unite-colorscheme
-NeoBundle 'ujihisa/unite-colorscheme'
-
-" unite-mark
-NeoBundle 'tacroe/unite-mark'
-
-" editvar & unite-variable
-NeoBundle 'thinca/vim-editvar'
-
-" unite-build
-NeoBundle 'Shougo/unite-build'
-
-"" }}}
-
-" ref.vim {{{
-"" ---------------------------------------------------------------------------------------------------------- 
-"
-NeoBundle 'thinca/vim-ref'
-
-" }}}
-
-" QFixHowm {{{
-"" ---------------------------------------------------------------------------------------------------------- 
-"
-NeoBundle 'fuenor/qfixhowm'
-
-" キーマップリーダー
-let QFixHowm_Key = 'g'
-" デフォルトの保存先
-" let qfixmemo_dir = $HOME . '/Dropbox/tmp/QFixMemo'
-let howm_dir = $HOME . '/tmp/QFixMemo'
-" メモのエンコーディング
-let howm_fileencoding = 'utf-8'
-" メモの改行コード
-let howm_fileformat = 'unix'
-" シンタックスハイライトにMarkdown のものを使用する
-let QFixHowm_FileType = 'markdown'
-" QFixHown + Markdown
-let QFixHowm_HownMode = 0
-let QFixHowm_Title = '#'
-let suffix = 'mkd'
-let QFixHowm_UserFileType = 'markdown'
-let QFixHowm_UserFileExt = suffix
-let howm_filename = '%Y/%m/%Y-%m-%d-%H%M%S.'.suffix
-" howm折り畳みを無効にする
-" let QFixHowm_Folding = 0
-
-"" }}}
-
-" org-mode {{{
-"" ---------------------------------------------------------------------------------------------------------- 
-NeoBundle 'jceb/vim-orgmode'
-NeoBundle 'tpope/vim-speeddating'
-"" }}}
-
-call neobundle#end()
+  call dein#end()
+  call dein#save_state()
+endif
+if dein#check_install()
+  call dein#install()
+endif
 
 filetype plugin indent on     
 
+" ユーザ定義関数 {{{
+" ------------------------------------------------------------------------------------------------------------------------
 "
-" ユーザ定義関数
-"
+set laststatus=2
 
 " カレントバッファのファイルのフルパスを表示する
 function! Fullpath()
@@ -505,13 +158,9 @@ function! Fullpath()
 endfunction
 :command! Fullpath :call Fullpath()
 
-" .po の横幅80文字目のカラムをハイライトする
-if exists('&colorcolumn')
-    autocmd FileType po set colorcolumn=+1 | setlocal textwidth=80
-endif
-
 " .vimrc.local 読み込み
 if filereadable(expand('~/.vimrc.local'))
   source ~/.vimrc.local
 endif
 
+" }}}

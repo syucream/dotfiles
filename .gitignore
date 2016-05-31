@@ -1,7 +1,11 @@
-.vim
-.vim-vundle
+.vim/*
+!.vim/rc/
 .vim-additional
 .unite
+
+.emacs.d/elpa/
+
+dircolors-solarized/
+
 etc/
-*/
 *.local

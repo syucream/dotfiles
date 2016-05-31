@@ -1,0 +1,79 @@
+#
+# complete
+#
+[[plugins]]
+repo = 'Shougo/neocomplete.vim'
+depends = 'context_filetype.vim'
+if = "has('lua')"
+on_event = 'InsertEnter'
+hook_source = '''
+  let g:neocomplete#enable_at_startup = 1
+  source ~/.vim/rc/plugins/neocomplete.rc.vim
+'''
+
+[[plugins]]
+repo = 'Shougo/neco-syntax'
+on_source = ['neocomplete.vim', 'deoplete.nvim']
+
+
+[[plugins]]
+repo = 'Shougo/context_filetype.vim'
+
+
+#
+# Unite.vim
+#
+[[plugins]]
+repo = 'unite.vim'
+hook_add = '''
+  nnoremap <silent> 'ua :<C-u>UniteWithBufferDir -buffer-name=files buffer file_mru bookmark file directory<CR>
+  nnoremap <silent> 'ub :<C-u>Unite buffer<CR>
+  nnoremap <silent> 'ud :<C-u>UniteWithBufferDir directory<CR>
+  nnoremap <silent> 'uf :<C-u>UniteWithBufferDir -buffer-name=files file<CR>
+  nnoremap <silent> 'uF :<C-u>Unite file_mru<CR>
+  nnoremap <silent> 'ug :<C-u>Unite grep<CR>
+  nnoremap <silent> 'uh :<C-u>Unite help<CR>
+  nnoremap <silent> 'uH :<C-u>Unite history/command history/search<CR>
+  nnoremap <silent> 'uU :<C-u>Unite buffer file_mru<CR>
+  nnoremap <silent> 'uj :<C-u>Unite jump -auto-preview<CR>
+  nnoremap <silent> 'um :<C-u>Unite build -no-quit<CR>
+  nnoremap <silent> 'uoh :<C-u>Unite outline -winheight=30<CR>
+  nnoremap <silent> 'uol :<C-u>Unite outline<CR>
+  nnoremap <silent> 'uov :<C-u>Unite outline -vertical -winwidth=40<CR>
+  nnoremap <silent> 'ur :<C-u>Unite -buffer-name=register register<CR>
+  nnoremap <silent> 'uy :<C-u>Unite history/yank<CR>
+
+  au FileType unite nnoremap <silent> <buffer> <expr> <C-j> unite#do_action('split')
+  au FileType unite inoremap <silent> <buffer> <expr> <C-j> unite#do_action('split')
+  au FileType unite nnoremap <silent> <buffer> <expr> <C-l> unite#do_action('vsplit')
+  au FileType unite inoremap <silent> <buffer> <expr> <C-l> unite#do_action('vsplit')
+
+  au FileType unite nnoremap <silent> <buffer> <ESC><ESC> q
+  au FileType unite inoremap <silent> <buffer> <ESC><ESC> <ESC>q
+'''
+
+[[plugins]]
+repo = 'Shougo/unite-outline'
+on_source = 'unite.vim'
+
+[[plugins]]
+repo = 'hewes/unite-gtags'
+
+[[plugins]]
+repo = 'osyo-manga/unite-quickfix'
+on_source = 'unite.vim'
+
+[[plugins]]
+repo = 'tacroe/unite-mark'
+on_source = 'unite.vim'
+
+[[plugins]]
+repo = 'Shougo/unite-build'
+on_source = 'unite.vim'
+
+[[plugins]]
+repo = 'kana/vim-altr'
+hook_add = '''
+  nnoremap <Leader>a <Plug>(altr-forward)
+'''
+
