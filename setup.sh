@@ -9,3 +9,9 @@ do
     echo "Symlink created: $file"
   fi
 done
+
+if [ -a $HOME/.nvimrc ]; then
+  echo "File exists: .nvimrc"
+else
+  ln -s $HOME/.vimrc $HOME/.nvimrc
+fi

@@ -71,9 +71,3 @@ on_source = 'unite.vim'
 repo = 'Shougo/unite-build'
 on_source = 'unite.vim'
 
-[[plugins]]
-repo = 'kana/vim-altr'
-hook_add = '''
-  nnoremap <Leader>a <Plug>(altr-forward)
-'''
-

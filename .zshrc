@@ -216,9 +216,28 @@ setopt print_eight_bit
 ## ヒストリを共有
 #setopt share_history
 
+## 履歴を検索
+bindkey '^P' history-beginning-search-backward
+bindkey '^N' history-beginning-search-forward
+
+#入力途中の履歴補完を有効化する
+autoload history-search-end
+zle -N history-beginning-search-backward-end history-search-end
+zle -N history-beginning-search-forward-end history-search-end
+
+## 補完候補のメニュー選択で、矢印キーの代わりにhjklで移動出来るようにする。
+zmodload zsh/complist
+bindkey -M menuselect 'h' vi-backward-char
+bindkey -M menuselect 'j' vi-down-line-or-history
+bindkey -M menuselect 'k' vi-up-line-or-history
+bindkey -M menuselect 'l' vi-forward-char
+
 ## cd後にlsを実行する
 setopt auto_cd
 function chpwd() { ls }
+
+## 全履歴を返すコマンド
+function history-all { history -E 1 }
 
 # 補完関連 {{{
 # ---------------------------------------------------------------------------------------------------- 
@@ -255,35 +274,5 @@ setopt correct
 setopt noautoremoveslash
 
 
-# }}}
-
-# テキストブラウザ検索設定 {{{
-# ---------------------------------------------------------------------------------------------------- 
-export TEXT_BROWSER=w3m
-function _space2p20
-{
-	    echo $@ |sed -e "s/ /%20/g"
-}
-function _space2plus
-{
-	    echo $@ | sed -e "s/ /+/g"
-}
-function google
-{
-	    ${TEXT_BROWSER} "http://www.google.co.jp/search?q="`_space2plus $@`"&hl=ja"
-}
-function ydic
-{
-	    ${TEXT_BROWSER} "http://dic.yahoo.co.jp/dsearch?enc=UTF-8&p="`_space2plus $@`"&stype=0&dtyp
-		e=2"
-}
-function technorati
-{
-	    ${TEXT_BROWSER} http://www.technorati.com/search/`_space2p20 $@`"?language=ja"
-}
-function wikipedia
-{
-	    ${TEXT_BROWSER} http://ja.wikipedia.org/wiki/`_space2p20 $@`
-}
 # }}}
 
