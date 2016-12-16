@@ -25,7 +25,6 @@ vnoremap > >gv
 
 " 文字コード
 set termencoding=utf-8
-set encoding=japan
 set fileencodings=utf-8
 set fenc=utf-8
 set enc=utf-8
@@ -139,7 +138,7 @@ if dein#load_state(s:dein_dir)
   call dein#load_toml(s:toml,      {'lazy': 0})
   call dein#load_toml(s:lazy_toml, {'lazy': 1})
   if has('nvim')
-    call dein#load_toml(s:nvim_toml, {'lazy': 1})
+    call dein#load_toml(s:nvim_toml, {})
   endif
 
   call dein#end()

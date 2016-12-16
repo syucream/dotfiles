@@ -3,7 +3,9 @@ repo = 'Shougo/dein.vim'
 
 [[plugins]]
 repo = 'Shougo/vimproc.vim'
-let cmd = 'make'
+hook_add = '''
+  let cmd = "make"
+'''
 
 [[plugins]]
 repo = 'thinca/vim-unite-history'
@@ -105,6 +107,7 @@ on_ft = 'python'
 [[plugins]]
 repo = 'jelera/vim-javascript-syntax'
 on_ft = 'javascript'
+
 [[plugins]]
 repo = 'jiangmiao/simple-javascript-indenter'
 on_ft = 'javascript'
