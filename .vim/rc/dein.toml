@@ -125,3 +125,11 @@ on_ft = ['markdown', 'mkd', 'md']
 repo = 'cespare/vim-toml'
 on_ft = 'toml'
 
+[[plugins]]
+repo = 'rust-lang/rust.vim'
+on_ft = 'rust'
+
+[[plugins]]
+repo = 'dag/vim2hs'
+on_ft = 'haskell'
+
