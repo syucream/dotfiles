@@ -137,3 +137,7 @@ on_ft = 'haskell'
 repo = 'derekwyatt/vim-scala'
 on_ft = 'scala'
 
+[[plugins]]
+repo = 'elixir-lang/vim-elixir'
+on_ft = 'elixir'
+

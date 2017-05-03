@@ -148,6 +148,10 @@ if dein#check_install()
   call dein#install()
 endif
 
+" elixir files
+au BufRead,BufNewFile *.ex,*.exs set filetype=elixir
+au BufRead,BufNewFile *.eex set filetype=eelixir
+
 filetype plugin indent on     
 
 " ユーザ定義関数 {{{

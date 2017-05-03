@@ -24,7 +24,7 @@ repo = 'Shougo/context_filetype.vim'
 # Unite.vim
 #
 [[plugins]]
-repo = 'unite.vim'
+repo = 'vim-scripts/unite.vim'
 hook_add = '''
   nnoremap <silent> 'ua :<C-u>UniteWithBufferDir -buffer-name=files buffer file_mru bookmark file directory<CR>
   nnoremap <silent> 'ub :<C-u>Unite buffer<CR>
