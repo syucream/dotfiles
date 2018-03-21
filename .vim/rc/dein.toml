@@ -141,3 +141,6 @@ on_ft = 'scala'
 repo = 'elixir-lang/vim-elixir'
 on_ft = 'elixir'
 
+[[plugins]]
+repo = 'tomlion/vim-solidity'
+
