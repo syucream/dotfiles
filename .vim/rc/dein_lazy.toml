@@ -71,3 +71,10 @@ on_source = 'unite.vim'
 repo = 'Shougo/unite-build'
 on_source = 'unite.vim'
 
+[[plugins]]
+repo = 'fatih/vim-go'
+on_ft = 'go'
+
+[[plugins]]
+repo = 'ctrlpvim/ctrlp.vim'
+on_ft = 'go'
