@@ -24,3 +24,8 @@ hook_post_source = '''
   call denite#custom#var('grep', 'recursive_opts', [])
   call denite#custom#var('grep', 'default_opts', ['--follow', '--no-group', '--no-color'])
 '''
+
+# Do 'go get -u github.com/nsf/gocode'
+[[plugins]]
+repo = 'zchee/deoplete-go'
+on_ft = ['go']
