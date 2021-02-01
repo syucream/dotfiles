@@ -1,30 +1,12 @@
 # PATH {{{
 # ---------------------------------------------------------------------------------------------------- 
 
-# for Android develop
-PATH=$PATH:$HOME/android-sdk-mac_86/platform-tools/
-# for gls on MacOS
+# coreutils on MacOS
 PATH=$PATH:/usr/local/opt/coreutils/libexec/gnubin
-# Add RVM to PATH for scripting
-PATH=$PATH:$HOME/.rvm/bin 
-# for cabal
-PATH=$PATH:$HOME/.cabal/bin 
 # for golang
-export GOROOT=/usr/local/go
-export GOPATH=$HOME/_go
-export PATH=$PATH:$GOROOT/bin:$GOPATH/bin
-
-# for rvm
-if [[ -s ~/.rvm/scripts/rvm ]] ; then source ~/.rvm/scripts/rvm ; fi
-source "$HOME/.rvm/scripts/rvm"
-
-# for MacOS
-case "${OSTYPE}" in
-freebsd*|darwin*)
-  # homebrew path
-  PATH=/usr/local/bin:$PATH
-;;
-esac
+export GOROOT=/usr/local/opt/go/libexec
+export GOPATH=$HOME/.go
+PATH=$GOPATH/bin/:$PATH
 
 # ~/local/bin
 PATH=~/local/bin:$PATH
@@ -36,20 +18,11 @@ PATH=~/local/bin:$PATH
 
 alias sc='screen'
 alias tmux='tmux -2'
-alias tm='tmux'
-alias e='exit'
-alias v='vim'
 alias gr='grep -R -n -I'
-alias wl='wc -l'
-alias l='ls -la'
 alias ll='ls -l'
-alias la="ls -a"
-alias lf="ls -F"
 alias du="du -h"
 alias df="df -h"
-# for typo
-alias ks='ls'
-alias lks='ls'
+alias vim="nvim"
 # for git
 alias gbr='git branch'
 alias gco='git checkout'
@@ -61,39 +34,6 @@ alias gitcm='git commit'
 alias gitf='git fetch'
 alias gitpl='git pull'
 alias gitps='git push'
-
-# for MacOS
-case "${OSTYPE}" in
-freebsd*|darwin*)
-  alias allfinder='defaults write com.apple.finder AppleShowAllFiles -boolean true; killall Finder'
-  alias protfinder='defaults delete com.apple.finder AppleShowAllFiles; killall Finder'
-;;
-esac
-
-# }}}
-
-# ls に色を付ける {{{
-# ---------------------------------------------------------------------------------------------------- 
-
-case "${OSTYPE}" in
-freebsd*|darwin*)
-# alias ls="ls -G -w"
-alias ls="gls --color"
-;;
-linux*)
-alias ls="ls --color"
-;;
-esac
-# LSCOLORS
-export LSCOLORS=ExFxCxdxBxegedabagacad
-export LS_COLORS='di=01;34:ln=01;35:so=01;32:ex=01;31:bd=46;34:cd=43;34:su=41;30:sg=46;30:tw=42;30:ow=43;30'
-if [ -f ~/.dircolors ]; then
-    if type dircolors > /dev/null 2>&1; then
-        eval $(dircolors ~/.dircolors)
-    elif type gdircolors > /dev/null 2>&1; then
-        eval $(gdircolors ~/.dircolors)
-    fi
-fi
 
 # }}}
 
@@ -128,6 +68,7 @@ function rprompt-git-current-branch {
         # これをしないと右プロンプトの位置がずれる
         echo "%{$color%}$name%{$reset_color%} "
 }
+
 # プロンプトが表示されるたびにプロンプト文字列を評価、置換する
 setopt prompt_subst
 
@@ -216,28 +157,9 @@ setopt print_eight_bit
 ## ヒストリを共有
 #setopt share_history
 
-## 履歴を検索
-bindkey '^P' history-beginning-search-backward
-bindkey '^N' history-beginning-search-forward
-
-#入力途中の履歴補完を有効化する
-autoload history-search-end
-zle -N history-beginning-search-backward-end history-search-end
-zle -N history-beginning-search-forward-end history-search-end
-
-## 補完候補のメニュー選択で、矢印キーの代わりにhjklで移動出来るようにする。
-zmodload zsh/complist
-bindkey -M menuselect 'h' vi-backward-char
-bindkey -M menuselect 'j' vi-down-line-or-history
-bindkey -M menuselect 'k' vi-up-line-or-history
-bindkey -M menuselect 'l' vi-forward-char
-
 ## cd後にlsを実行する
-setopt auto_cd
-function chpwd() { ls }
-
-## 全履歴を返すコマンド
-function history-all { history -E 1 }
+# setopt auto_cd
+# function chpwd() { ls }
 
 # 補完関連 {{{
 # ---------------------------------------------------------------------------------------------------- 
@@ -273,6 +195,63 @@ setopt correct
 ## 最後のスラッシュを自動的に削除しない
 setopt noautoremoveslash
 
-
 # }}}
 
+# テキストブラウザ検索設定 {{{
+# ---------------------------------------------------------------------------------------------------- 
+export TEXT_BROWSER=w3m
+function _space2p20
+{
+	    echo $@ |sed -e "s/ /%20/g"
+}
+function _space2plus
+{
+	    echo $@ | sed -e "s/ /+/g"
+}
+function google
+{
+	    ${TEXT_BROWSER} "http://www.google.co.jp/search?q="`_space2plus $@`"&hl=ja"
+}
+function ydic
+{
+	    ${TEXT_BROWSER} "http://dic.yahoo.co.jp/dsearch?enc=UTF-8&p="`_space2plus $@`"&stype=0&dtyp
+		e=2"
+}
+function technorati
+{
+	    ${TEXT_BROWSER} http://www.technorati.com/search/`_space2p20 $@`"?language=ja"
+}
+function wikipedia
+{
+	    ${TEXT_BROWSER} http://ja.wikipedia.org/wiki/`_space2p20 $@`
+}
+# }}}
+
+# The next line updates PATH for the Google Cloud SDK.
+if [ -f '/Users/ryo/google-cloud-sdk/path.zsh.inc' ]; then source '/Users/ryo/google-cloud-sdk/path.zsh.inc'; fi
+
+# The next line enables shell command completion for gcloud.
+if [ -f '/Users/ryo/google-cloud-sdk/completion.zsh.inc' ]; then source '/Users/ryo/google-cloud-sdk/completion.zsh.inc'; fi
+
+# added by travis gem
+[ -f /Users/ryo/.travis/travis.sh ] && source /Users/ryo/.travis/travis.sh
+
+### Added by Zinit's installer
+if [[ ! -f $HOME/.zinit/bin/zinit.zsh ]]; then
+    print -P "%F{33}▓▒░ %F{220}Installing %F{33}DHARMA%F{220} Initiative Plugin Manager (%F{33}zdharma/zinit%F{220})…%f"
+    command mkdir -p "$HOME/.zinit" && command chmod g-rwX "$HOME/.zinit"
+    command git clone https://github.com/zdharma/zinit "$HOME/.zinit/bin" && \
+        print -P "%F{33}▓▒░ %F{34}Installation successful.%f%b" || \
+        print -P "%F{160}▓▒░ The clone has failed.%f%b"
+fi
+
+source "$HOME/.zinit/bin/zinit.zsh"
+autoload -Uz _zinit
+(( ${+_comps} )) && _comps[zinit]=_zinit
+### End of Zinit's installer chunk
+
+zinit snippet PZT::modules/helper/init.zsh
+zinit light zsh-users/zsh-autosuggestions
+zinit light zdharma/fast-syntax-highlighting
+zinit light zdharma/history-search-multi-word
+zinit light mollifier/anyframe
